@@ -1,0 +1,175 @@
+{% liquid
+  if block.settings.content_direction == 'column'
+    assign direction = 'flex-column'
+    assign vartical_alignment = 'align-items-' | append: block.settings.vartical_alignment
+    assign horizontal_alignment = block.settings.horizontal_alignment
+    if horizontal_alignment
+      assign horizontal_alignment = 'align-items-' | append: block.settings.horizontal_alignment
+      assign horizontal_alignment = 'justify-content-' | append: block.settings.horizontal_alignment
+    endif
+    assign days_label = 'DAYS'
+    assign hours_label = 'HOURS'
+    assign minutes_label = 'MINUTES'
+    assign seconds_label = 'SECONDS'
+  elsif block.settings.content_direction == 'row'
+    assign direction = 'flex-row'
+    assign horizontal_alignment = 'justify-content-' | append: block.settings.horizontal_alignment
+    assign days_label = 'D'
+    assign hours_label = 'H'
+    assign minutes_label = 'M'
+    assign seconds_label = 'S'
+  endif
+%}
+
+<div
+  class="deals-counter spacing-style"
+  {{ block.shopify_attributes }}
+  style="{% render 'spacing-style', settings:block.settings %}">
+  {% assign deal_time = block.settings.deal_end_date | date: '%d %b %Y' | default: '00-00-0000' %}
+  <div class="product-deal-count" data-end-time="{{ deal_time}}">
+    <ul class="list-unstyled d-flex flex-wrap flex-xxl-nowrap align-items-center justify-content-center mb-0 gap-1 gap-md-4 gap-sm-3">
+      <li class="time-unit d-flex {{ direction }} {{ vartical_alignment }} {{ horizontal_alignment }} text-center px-1 position-relative">
+        <span class="number h2 text-nowrap mb-0 days"></span>
+        <span class="time-label align-content-end number text-nowrap {% if block.settings.content_direction == 'row' %}ms-1{% endif %}">{{ days_label }}</span>
+      </li>
+      <li class="separete_line time-unit"><span class="number h2 position-relative">:</span></li>
+      <li class="time-unit d-flex {{ direction }} {{ vartical_alignment }} {{ horizontal_alignment }} text-center px-1 position-relative">
+        <span class="number h2 text-nowrap mb-0 hours"></span>
+        <span class="time-label align-content-end number text-nowrap {% if block.settings.content_direction == 'row' %}ms-1{% endif %}">{{ hours_label }}</span>
+      </li>
+      <li class="separete_line time-unit"><span class="number h2 position-relative">:</span></li>     
+      <li class="time-unit d-flex {{ direction }} {{ vartical_alignment }} {{ horizontal_alignment }} text-center px-1 position-relative">
+        <span class="number h2 text-nowrap mb-0 minutes"></span>
+        <span class="time-label align-content-end number text-nowrap {% if block.settings.content_direction == 'row' %}ms-1{% endif %}">{{ minutes_label }}</span>
+      </li>
+      <li class="separete_line time-unit"><span class="number h2 position-relative">:</span></li>      
+      <li class="time-unit d-flex {{ direction }} {{ vartical_alignment }} {{ horizontal_alignment }} text-center px-1 position-relative">
+        <span class="number h2 text-nowrap mb-0 seconds"></span>
+        <span class="time-label align-content-end number text-nowrap {% if block.settings.content_direction == 'row' %}ms-1{% endif %}">{{ seconds_label }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  function makeTimer() {
+    $('.product-deal-count').each(function () {
+      var endTime = new Date($(this).attr('data-end-time'));
+      endTime = Date.parse(endTime) / 1000;
+      var now = new Date();
+      now = Date.parse(now) / 1000;
+      var timeLeft = endTime - now;
+
+      if (timeLeft > 0) {
+        var days = Math.floor(timeLeft / 86400);
+        var hours = Math.floor((timeLeft - days * 86400) / 3600);
+        var minutes = Math.floor((timeLeft - days * 86400 - hours * 3600) / 60);
+        var seconds = Math.floor(timeLeft - days * 86400 - hours * 3600 - minutes * 60);
+
+        if (hours < 10) {
+          hours = '0' + hours;
+        }
+        if (minutes < 10) {
+          minutes = '0' + minutes;
+        }
+        if (seconds < 10) {
+          seconds = '0' + seconds;
+        }
+
+        $(this)
+          .find('.days')
+          .html(days < 10 ? '0' + days : days);
+        $(this).find('.hours').html(hours);
+        $(this).find('.minutes').html(minutes);
+        $(this).find('.seconds').html(seconds);
+      } else {
+        $(this).find('.days').html('00');
+        $(this).find('.hours').html('00');
+        $(this).find('.minutes').html('00');
+        $(this).find('.seconds').html('00');
+        $(this).find('.deal-label').hide();
+        $(this).find('.deal-clock').hide();
+      }
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "t:name.deal_timer",
+  "tag":null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "deal_end_date",
+      "label": "t:settings.deal_end_date",
+      "info": "t:settings.info"
+    },
+    {
+      "type": "select",
+      "id": "content_direction",
+      "label": "t:settings.direction",
+      "options": [
+        {
+          "value": "column",
+          "label": "t:options.vertical"
+        },
+        {
+          "value": "row",
+          "label": "t:options.horizontal"
+        }
+      ],
+      "default": "column"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:name.deal_timer"
+    }
+  ]
+}
+{% endschema %}

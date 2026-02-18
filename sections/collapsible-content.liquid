@@ -1,0 +1,167 @@
+<div class="color-{{ section.settings.color_scheme }}">
+  <div class="collapsible_section {% if section.settings.full_width %}container-fluid {% else %}container{% endif %} {{ section.settings.custom_class }}"
+    {% if settings.animation != blank %}
+      data-aos="{{ settings.animation}}"
+    {% endif %}
+  >
+    <div
+      class="section_container section_container--{{ section.id }} spacing-style top-bottom-spacing"
+      style="
+         --padding-top:{{ section.settings.padding-block-start }}px;
+        --padding-bottom:{{ section.settings.padding-block-end }}px;
+         --gap-style: max(calc(var(--space-scale, 1.0) * {{ section.settings.grid_space }}px));
+      "
+    >
+      {% content_for 'block', type: 'header-block', id: 'collapsible-content-header-block' %}
+      {% content_for 'block', type: 'collapsible-content-block', id: 'collapsible-content-block' %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "t:name.collapsible-content",
+  "class": "collapsible-content-section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "blocks": [],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:settings.full_width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 150
+    },
+    {
+      "type": "header",
+      "content": "t:content.custom_class"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "t:settings.custom_class"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:name.collapsible-content",
+      "settings": {
+        "padding-block-start": 150,
+        "padding-block-end": 150
+      },
+      "blocks": [
+        {
+          "name": "t:name.header-block",
+          "type": "header-block",
+          "static": true,
+          "id": "collapsible-content-header-block",
+          "settings": {
+            "padding-block-end": 50,
+            "horizontal_alignment": "center"
+          },
+          "blocks": [
+            {
+              "name": "t:name.header",
+              "type": "text",
+              "settings": {
+                "text": "<h2>collapsible-content</h2>",
+                "padding-block-end": 14
+              }
+            },
+            {
+              "name": "t:settings.text",
+              "type": "description",
+              "settings": {
+                "text": "description"
+              }
+            }
+          ]
+        },
+        {
+          "type": "collapsible-content-block",
+          "id": "collapsible-content-block",
+          "static": true,
+          "settings": {
+            "grid_space": 36
+          },
+          "blocks": [
+            {
+              "type": "_accordian_row",
+              "settings": {
+                "open_by_default": true,
+                "heading": "Return policy"
+              },
+              "blocks": [
+                {
+                  "type": "description",
+                  "settings": {
+                    "text": "We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location."
+                  }
+                }
+              ]
+            },
+            {
+              "type": "_accordian_row",
+              "settings": {
+                "heading": "Shipping"
+              },
+              "blocks": [
+                {
+                  "type": "description",
+                  "settings": {
+                    "text": "Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value."
+                  }
+                }
+              ]
+            },
+            {
+              "type": "_accordian_row",
+              "settings": {
+                "heading": "Manufacturing"
+              },
+              "blocks": [
+                {
+                  "type": "description",
+                  "settings": {
+                    "text": "Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% comment %} [END section.blocks] {% endcomment %}

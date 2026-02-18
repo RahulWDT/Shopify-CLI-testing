@@ -1,0 +1,71 @@
+
+<div
+  class="position-relative  card-swatch-block spacing-style"
+  style="{% render 'spacing-style', settings:block.settings %}"
+  {{ block.shopify_attributes }}
+>
+  {% if closest.product.media.size > 0 %}
+    {% render 'card-swatch', product: closest.product, swatches: block.settings.swatches, alignment:alignment %}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:name.swatch",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:content.product_swatches"
+    },
+    {
+      "type": "select",
+      "id": "swatches",
+      "label": "t:settings.swatches",
+      "options": [
+        {
+          "value": "color",
+          "label": "t:options.color"
+        },
+        {
+          "value": "image",
+          "label": "t:options.image"
+        }
+      ],
+      "default":"color"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:name.swatch",
+      "category": "t:categories.product",
+      "settings": {
+      }
+    }
+  ]
+}
+{% endschema %}

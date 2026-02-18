@@ -1,0 +1,35 @@
+ <div class="widget-tags mb-3">
+    {% if settings.tags_title != blank %} 
+    <h5 class="sidebar_title">{{ settings.tags_title }}</h5>  
+    {% endif %}
+    <div class="blog-sidebar-panel">
+    <ul class="tag-container categories list-unstyled d-flex flex-wrap gap-2">
+    {% for tag in blog.all_tags limit: settings.limit %}
+    {% if current_tags contains tag %}
+    <li class="active">{{ tag | link_to_tag: tag }}</li>
+    {% else %}
+    <li class="">{{ tag | link_to_tag: tag }}</li>
+    {% endif %}
+    {% endfor %}
+    </ul>  
+    </div>
+    </div>
+    {% schema %}
+{
+  "name": "t:name.blog_tag", 
+  "tag": null,
+  "settings": [ 
+  ],
+  "presets": [
+    {
+      "name": "t:name.blog_tag",
+      "category": "t:categories.blog",
+      "settings": {       
+      },
+      "blocks": [
+             
+      ]
+    }
+  ]
+}
+{% endschema %}

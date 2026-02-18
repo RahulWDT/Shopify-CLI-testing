@@ -1,0 +1,58 @@
+
+{% if block.settings.btn_text != blank %}
+<div class="read-more" {{ block.shopify_attributes }}>
+  <a
+    role="link"
+    href="{{ article.url }}"
+    {% if block.settings.open_in_new_tab %}
+      target="_blank"
+    {% endif %}
+    class="btn {{ block.settings.btn_style }}"
+    aria-label="{{ article.title }}"
+  >
+    {{ block.settings.btn_text }}
+  </a>
+</div>
+{% endif %}
+
+
+
+{% schema %}
+{
+  "name": "t:name.button",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "t:settings.text",
+      "default": "t:content.button_text"
+    },
+    {
+      "type": "select",
+      "id": "btn_style",
+      "label": "t:settings.style",
+      "default": "btn-primary",
+      "options": [
+        {
+          "value": "btn-primary",
+          "label": "t:options.primary"
+        },
+        {
+          "value": "btn-secondary",
+          "label": "t:options.secondary"
+        },
+        {
+          "value": "btn-link",
+          "label": "t:options.link"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "open_in_new_tab",
+      "label": "t:settings.open_in_new_tab"
+    }
+  ]
+}
+{% endschema %}

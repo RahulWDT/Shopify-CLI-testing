@@ -1,0 +1,508 @@
+{% style %}
+  .placeholder-image svg, media-gallery img{width:100%; height:100%;}
+  wdt-swiper-slider{overflow:hidden;}
+  .custom_carousel_section {list-style: none; padding-left:0;}
+  .card__inner_wrapper + .shopify-block{height:100%;}
+   .custom_carousel_section.custom_carousel_section--{{ section.id }}{
+    grid-template-columns:var(--grid-mobile-columns);
+  }
+  @media screen and (width >= 576px){
+   .custom_carousel_section.custom_carousel_section--{{ section.id }}{
+    grid-template-columns:var(--grid-tablet-column);
+  }
+  }
+  @media screen and (width >= 992px){
+   .custom_carousel_section.custom_carousel_section--{{ section.id }}{
+    grid-template-columns:var(--grid-laptop-columns);
+  }
+  }
+  @media screen and (width >= 1200px){
+   .custom_carousel_section.custom_carousel_section--{{ section.id }}{
+    grid-template-columns:var(--grid-desktop-columns);
+  }
+  }
+  /* .custom_carousel_section{ position: relative;} */
+  .custom-carousel-container{ position: absolute; inset: 0;z-index: -2; }
+  .custom_carousel_section  .custom_carousel_background{ grid-area: 1 / -1; }
+  .custom_carousel_section .custom_carousel_background .background_media{ position: absolute; inset: 0; }
+  .custom_carousel_section .custom_carousel_background .background_media :is(img, svg, video){
+    width:100%;
+    height: 100%;
+    object-fit:{{ section.settings.video_position }};
+  }
+{% endstyle %}
+
+{% liquid
+  assign show_desktop_slider = false
+  assign layout = section.settings.layout_type
+  if layout == 'carousel'
+    assign layout = true
+    assign show_desktop_slider = true
+  else
+    assign layout = false
+    assign show_desktop_slider = false
+  endif
+
+  if show_desktop_slider
+    assign auto_play = 0
+    assign centered_mode = false
+    assign loop_slide = false
+    assign dots = section.settings.swiper_pagination
+    assign space = section.settings.horizontal_gap | default: 0
+  endif
+
+  assign slider_desktop = section.settings.columns_desktop | default: 3
+  assign slider_laptop = section.settings.columns_desktop | minus: 1
+
+  if section.settings.columns_desktop == '1'
+    assign slider_laptop = 1
+    assign slider_tablet = 1
+  elsif section.settings.columns_desktop == '2'
+    assign slider_laptop = 2
+    assign slider_tablet = 2
+  elsif section.settings.columns_desktop == '3'
+    assign slider_laptop = 3
+    assign slider_tablet = 2
+  elsif section.settings.columns_desktop == '4'
+    assign slider_laptop = 3
+    assign slider_tablet = 2
+  elsif section.settings.columns_desktop == '5'
+    assign slider_laptop = 4
+    assign slider_tablet = 3
+  endif
+  assign slider_mobile = section.settings.columns_mobile | default: 1
+%}
+
+{% render 'swiper-initialization', space: space, slider_desktop: slider_desktop %}
+
+{% capture swiper_controls %}
+    {%- render 'swiper-controls',
+      show_desktop_slider: show_desktop_slider,
+      section: section,
+      settings: section.settings
+    -%}
+  {% endcapture %}
+
+{% capture blocks %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+
+<div class="section-{{ section.id }} custom_carousel_section custom_carousel_section-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient {{ section.settings.custom_class }}">
+  <div
+    class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %} "
+  >
+    <div class="custom_carousel_background">
+      {% render 'background-media',
+        background_media: section.settings.background_media,
+        background_video: section.settings.video,
+        background_video_position: section.settings.video_position,
+        background_image: section.settings.background_image,
+        background_image_position: section.settings.background_image_position,
+        settings: section.settings
+      %}
+    </div>
+    {% if section.settings.toggle_overlay %}
+      {% render 'overlay', settings: section.settings %}
+    {% endif %}
+    <div
+      class="custom_section_carousel top-bottom-spacing layout_height align-items-{{ section.settings.vertical_alignment }}"
+      style="
+        --padding-top:{{ section.settings.padding-top }}px;
+        --padding-bottom:{{ section.settings.padding-bottom }}px;
+      "
+    >
+      {% content_for 'block', type: 'header-block', id: 'header-block' %}
+      {% if show_desktop_slider %}
+        <wdt-swiper-slider>
+          <div
+            data-slider-options='
+              {
+                  "desktop": "{{ slider_desktop }}",
+                  "laptop": "{{ slider_laptop }}",
+                  "tablet": "{{ slider_tablet }}",
+                  "mobile": "{{ slider_mobile }}",
+                  "loop": "{{ loop_slide }}",
+                  "mode": "{{ centered_mode }}",
+                  "auto_play": "{{ auto_play }}",
+                  "dots": "{{ dots }}",
+                 "space": "{{ space }}"
+              }
+            '
+          >
+            <div class="custom_carousel_section swiper" data-swiper-slider>
+              <div class="custom_carousel_section-wrapper swiper-wrapper">
+                {{ blocks }}
+              </div>
+              {{ swiper_controls }}
+            </div>
+          </div>
+        </wdt-swiper-slider>
+      {% else %}
+        <div
+          class="custom_carousel_section custom_carousel_section--{{ section.id }} h-auto"
+          style="
+            display:grid; --grid-desktop-columns: repeat({{ slider_desktop }}, 1fr); --grid-laptop-columns: repeat({{ slider_laptop }},1fr); --grid-tablet-column: repeat({{ slider_tablet }},1fr);
+            --grid-mobile-columns: repeat({{ section.settings.columns_mobile}}, 1fr); row-gap:{{ section.settings.vertical_gap }}px; column-gap:{{ section.settings.horizontal_gap }}px;
+          "
+        >
+          {{ blocks }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:name.custom_carousel_section",
+  "class": "section custom_carousel_section",
+  "blocks": [{ "type": "_carousel-card" }],
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:settings.full_width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_type",
+      "label": "t:settings.type",
+      "options": [
+        {
+          "value": "grid",
+          "label": "t:options.grid"
+        },
+        {
+          "value": "carousel",
+          "label": "t:options.carousel"
+        }
+      ],
+      "default": "carousel"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_gap",
+      "label": "t:settings.horizontal_gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "visible_if": "{{ section.settings.layout_type == 'grid' or section.settings.layout_type == 'carousel' }}"
+    },
+    {
+      "type": "range",
+      "id": "vertical_gap",
+      "label": "t:settings.vertical_gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 8,
+      "visible_if": "{{ section.settings.layout_type == 'grid'}}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "select",
+      "id": "background_media",
+      "label": "t:settings.background_media",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "image",
+          "label": "t:options.image"
+        },
+        {
+          "value": "video",
+          "label": "t:options.video"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:settings.video",
+      "visible_if": "{{ section.settings.background_media == 'video' }}"
+    },
+    {
+      "type": "select",
+      "id": "video_position",
+      "label": "t:settings.video_position",
+      "options": [
+        {
+          "value": "cover",
+          "label": "t:options.cover"
+        },
+        {
+          "value": "contain",
+          "label": "t:options.contain"
+        }
+      ],
+      "default": "cover",
+      "visible_if": "{{ section.settings.background_media == 'video' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:settings.image",
+      "visible_if": "{{ section.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "select",
+      "id": "background_image_position",
+      "label": "t:settings.image_position",
+      "options": [
+        {
+          "value": "cover",
+          "label": "t:options.cover"
+        },
+        {
+          "value": "fit",
+          "label": "t:options.fit"
+        }
+      ],
+      "default": "cover",
+      "visible_if": "{{ section.settings.background_media == 'image' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "toggle_overlay",
+      "label": "t:settings.background_overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:settings.overlay_color",
+      "alpha": true,
+      "default": "#00000026",
+      "visible_if": "{{ section.settings.toggle_overlay }}"
+    },
+    {
+      "type": "select",
+      "id": "overlay_style",
+      "label": "t:settings.overlay_style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        },
+        {
+          "value": "gradient",
+          "label": "t:options.gradient"
+        }
+      ],
+      "default": "solid",
+      "visible_if": "{{ section.settings.toggle_overlay }}"
+    },
+    {
+      "type": "select",
+      "id": "gradient_direction",
+      "label": "t:settings.gradient_direction",
+      "options": [
+        {
+          "value": "to top",
+          "label": "t:options.up"
+        },
+        {
+          "value": "to bottom",
+          "label": "t:options.down"
+        }
+      ],
+      "default": "to top",
+      "visible_if": "{{ section.settings.toggle_overlay and section.settings.overlay_style == 'gradient' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.column"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "t:settings.columns_desktop",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:options.column_1"
+        },
+        {
+          "value": "2",
+          "label": "t:options.column_2"
+        },
+        {
+          "value": "3",
+          "label": "t:options.column_3"
+        },
+        {
+          "value": "4",
+          "label": "t:options.column_4"
+        },
+        {
+          "value": "5",
+          "label": "t:options.column_5"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "t:settings.columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:options.column_1"
+        },
+        {
+          "value": "2",
+          "label": "t:options.column_2"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:content.navigation",
+      "visible_if": "{{ section.settings.layout_type == 'carousel' }}"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "t:settings.style",
+      "visible_if": "{{ section.settings.layout_type == 'carousel' }}",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "dots",
+          "label": "t:options.dots"
+        },
+        {
+          "value": "arrow",
+          "label": "t:options.arrow"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "t:settings.border",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        }
+      ],
+      "default": "none",
+      "visible_if": "{{ section.settings.style == 'arrow' and section.settings.layout_type == 'carousel' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "t:settings.thickness",
+      "default": 1,
+      "visible_if": "{{ section.settings.border != 'none' and section.settings.style == 'arrow' and section.settings.layout_type == 'carousel' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 0,
+      "visible_if": "{{ section.settings.style == 'arrow'  and section.settings.border != 'none' and section.settings.layout_type == 'carousel' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "t:settings.opacity",
+      "default": 100,
+      "visible_if": "{{ section.settings.border != 'none'  and section.settings.style == 'arrow' and section.settings.layout_type == 'carousel' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "inherit_color_scheme",
+      "label": "t:settings.inherit_color_scheme",
+      "default": true,
+      "visible_if": "{{ section.settings.style == 'arrow' and section.settings.layout_type == 'carousel' }}"
+    },
+    {
+      "type": "color_scheme",
+      "id": "pagination_color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1",
+      "visible_if": "{{ section.settings.inherit_color_scheme == false }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "t:content.custom_class"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "t:settings.custom_class"
+    }
+  ],
+  "presets": [
+  ]
+}
+{% endschema %}

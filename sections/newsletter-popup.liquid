@@ -1,0 +1,369 @@
+{% style %}
+    .bg-overlay{background-color:rgba(var(--color-foreground),0.7);}
+    .bg-overlay form{width:100%;}
+
+    #newsletter_model .popup-modal{
+     max-width:min(1100px , 90%);
+     width:100%;
+     z-index:9999;
+     /* border-radius: var(--bs-border-radius-xl); */
+     max-height: 100vh;
+     overflow: auto;
+    }
+
+   .bg-overlay:not(:has(.img-block)):has(.popup-content:empty){display:none !important;}
+
+    .popup-content .banner-content > *:first-of-type{padding-right:25px !important;}
+    .popup-modal .form-check-label { cursor: pointer;display: inline-block;    }
+    .popup-modal .popup-content:empty{display:none !important;}     
+
+    #newsletter_model .popup-modal:not(:has(.img-block)):not(:has(.popup-content:empty)) , /* applies if image is not there */
+    #newsletter_model .popup-modal:has(.banner-image):has(.popup-content:empty) { max-width:min(600px , 90%);}   /* applies if content is not there */
+
+
+    @media screen and (min-width:576px){
+      .position-sm-absolute{position:absolute;}
+    }
+    @media screen and (max-width:768px){
+     .bg-overlay .popup-modal{margin:0;}
+     .img-block {aspect-ratio:16/9 !important;}
+    }
+      @media ( max-width:991.98px ) {
+      .banner_container.banner_container--{{ section.id }}{flex-wrap:wrap;}
+      .banner_container.banner_container--{{ section.id }} .banner-content{position:static}
+      }
+
+      @media ( max-width:575.98px ) {
+      .banner_container.banner_container--{{ section.id }} {display: flex;flex-direction: {{ section.settings.image_placement_mobile }};}
+      }
+
+{% liquid
+  if section.settings.image_placement_mobile == 'top'
+    assign mobile_position = 'flex-column'
+  else
+    assign mobile_position = 'flex-column-reverse'
+  endif
+%}
+
+
+{% endstyle %}
+{% liquid
+  assign layout_position = ''
+  case section.settings.layout_position
+    when 'bottom_left'
+      assign layout_position = 'justify-content-md-start align-items-sm-end justify-content-center align-items-center'
+    when 'center'
+      assign layout_position = 'justify-content-center align-items-center'
+    when 'bottom_right'
+      assign layout_position = 'justify-content-md-end align-items-sm-end justify-content-center align-items-center'
+    else
+      assign layout_position = 'justify-content-md-end align-items-sm-end justify-content-center align-items-center'
+  endcase
+%}
+<newsletter-modal>
+  <div
+    id="newsletter_model"
+    class="bg-overlay fixed-bottom top-0 d-none {{ layout_position }}"
+    data-expiry="{{ section.settings.cookie_expires }}"
+    data-delay="{{ section.settings.cookie_modal_delay }}"
+  >
+   
+      <div class="popup-modal box-modal m-2 position-relative color-{{ section.settings.color_scheme }}  border-style "style="{% render 'border-style', settings:section.settings %}">
+      <div class="close m-0 z-2 m-md-4 position-absolute top-0 end-0 shadow-none z-3">
+        <button type="button" class="btn-close m-0" aria-label="Close">{% render 'cancel.svg' %}</button>
+      </div>
+      {% comment %} {% content_for 'blocks' %} {% endcomment %}
+      {% comment %} {% content_for 'block', id: 'image_with_text_content', type: 'image-with-text-content' %} {% endcomment %}
+      <div
+        class="banner-image d-flex flex-grow-1 {{ mobile_position }} flex-md-{{  section.settings.image_placement }} w-100 h-100 size-style align-items-{{ section.settings.desktop_vertical_position }}"
+        {{ section.shopify_attributes }}
+        style="{% render 'spacing-style', settings:section.settings %} {% render 'border-style', settings:section.settings %} {% render 'size-style-width', settings:section.settings %} "
+      >
+        {% content_for 'block', id: 'image_with_text_image', type: 'popup-image' %}
+
+        <div class="h-auto w-100 d-flex popup-content {{ direction }} {{ horizontal_alignment }} flex-grow-1">
+          {%- content_for 'block', id: 'popup-newsletter-content', type: 'popup-newsletter-content' -%}
+
+          {%- content_for 'blocks' -%}
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</newsletter-modal>
+
+{% javascript %}
+  class NewsletterModal extends HTMLElement {
+    constructor() {
+      super();
+      this.newsletterModal = null;
+      this.closeButton = null;
+    }
+    connectedCallback() {
+      this.initModal();
+    }
+    initModal() {
+      this.newsletterModal = this.querySelector('#newsletter_model');
+      this.closeButton = this.querySelector('#newsletter_model .btn-close');
+      if (!this.newsletterModal || this.getCookie('newsletter_shown')) {
+        return;
+      }
+      const isThemeEditor = window.Shopify && window.Shopify.designMode;
+      const delay = parseInt(this.newsletterModal.dataset.delay || '0', 10);
+      const expiryDays = parseInt(this.newsletterModal.dataset.expiry || '30', 10);
+      if (!isThemeEditor && this.getCookie('newsletter_shown')) {
+        return;
+      }
+      setTimeout(() => {
+        this.showModal();
+        if (!isThemeEditor) {
+          this.setCookie('newsletter_shown', 'true', expiryDays);
+        }
+      }, delay);
+      this.initEventListeners();
+    }
+    initEventListeners() {
+      if (this.closeButton) {
+        this.closeButton.addEventListener('click', () => this.hideModal());
+      }
+      document.addEventListener('click', (event) => {
+        if (!event.target.closest('.popup-modal, .trigger')) {
+          this.hideModal();
+        }
+      });
+    }
+    showModal() {
+      this.newsletterModal.classList.remove('d-none');
+      this.newsletterModal.classList.add('d-flex');
+    }
+    hideModal() {
+      if (this.newsletterModal) {
+        this.newsletterModal.classList.remove('d-flex');
+        this.newsletterModal.classList.add('d-none');
+        this.newsletterModal.style.setProperty('display', 'none', 'important');
+      }
+      const popupModal = this.querySelector('.popup-modal');
+      if (popupModal) {
+        popupModal.style.setProperty('display', 'none', 'important');
+      }
+    }
+    getCookie(name) {
+      const value = '; ' + document.cookie;
+      const parts = value.split('; ' + name + '=');
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    setCookie(name, value, days) {
+      let expires = '';
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = '; expires=' + date.toUTCString();
+      }
+      document.cookie = `${name}=${value || ''}${expires}; path=/`;
+    }
+  }
+
+  customElements.define('newsletter-modal', NewsletterModal);
+  document.addEventListener('DOMContentLoaded', () => {
+    const newsletterModalElement = document.querySelector('newsletter-modal');
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:name.newsletter_modal",
+  "tag": "aside",
+  "class": "section-newsletter-popup",
+  "blocks": [{ "type": "popup-newsletter-content" }],
+  "enabled_on": {
+    "groups": ["custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "layout_position",
+      "label": "t:settings.position",
+      "options": [
+        {
+          "label": "t:options.bottom-left",
+          "value": "bottom_left"
+        },
+        {
+          "label": "t:options.center",
+          "value": "center"
+        },
+        {
+          "label": "t:options.bottom-right",
+          "value": "bottom_right"
+        }
+      ]
+    },
+     {
+      "type": "select",
+      "id": "image_placement",
+      "label": "t:settings.image_position_desktop",
+      "options": [
+        {
+          "value": "row",
+          "label": "t:options.left"
+        },
+        {
+          "value": "row-reverse",
+          "label": "t:options.right"
+        }
+      ],
+      "default": "row"
+    },
+     {
+      "type": "select",
+      "id": "image_placement_mobile",
+      "label": "t:settings.image_position_mobile",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:options.top"
+        },
+        {
+          "value": "bottom",
+          "label": "t:options.bottom"
+        }
+      ],
+      "default": "top"
+    },
+     {
+      "type": "header",
+      "content": "Appearence"
+    },
+    {
+      "type": "range",
+      "id": "cookie_expires",
+      "label": "t:settings.cookies_expires",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 1,
+      "info": "t:info.cookies_expires"
+    },
+    {
+      "type": "text",
+      "id": "cookie_modal_delay",
+      "label": "t:settings.cookies_expires_delay",
+      "default": "5000",
+      "info": "t:info.cookies_expires_delay"
+    },
+
+     {
+      "type": "header",
+      "content": "t:name.border"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "t:settings.style",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "t:settings.thickness",
+      "default": 1,
+      "visible_if": "{{ section.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "t:settings.opacity",
+      "default": 100,
+      "visible_if": "{{ section.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "default": 0,
+      "unit": "px"
+    },
+    
+  ],
+  "presets": [
+    {
+      "name": "t:name.newsletter_modal",
+      "settings": {
+        "color_scheme": "scheme-1"
+      },
+
+      "blocks": [
+        {
+          "name": "t:name.content",
+          "type": "popup-newsletter-content",
+          "static": true,
+          "id": "popup-newsletter-content",
+          "settings": {
+            "padding-block-end": 50
+          },
+          "blocks": [
+            {
+              "name": "t:settings:heading",
+              "type": "text",
+              "settings": {
+                "text": "<h2>Newsletter</h2>",
+                "padding-block-end": 15
+              }
+            },
+            {
+              "name": "t:settings.text",
+              "type": "description",
+              "settings": {
+                "text": "Get connect with us",
+                "padding-block-end": 15
+              }
+            },
+            {
+              "name": "t:settings.button",
+              "type": "newsletter",
+              "settings": {
+                "padding-block-end": 15
+              }
+            },
+            {
+              "name": "t:name.social_links",
+              "type": "header-social-icon",
+            },
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

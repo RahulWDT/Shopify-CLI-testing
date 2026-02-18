@@ -1,0 +1,260 @@
+{{ 'main-collection-product-grid.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .wishlist__grid.empty-list {
+  font-size: calc(1.375rem + 1.5vw);
+  line-height: 1.2;
+  display: flex;
+  justify-content: center;
+  padding-left: 2rem; padding-right: 2rem;  text-align: center;   
+}
+@media (min-width: 1200px) {
+  .wishlist__grid.empty-list{
+    font-size: 2.5rem;
+  }
+}
+ .wishlist__loader {
+    padding: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.wishlist__grid .card-body-information .price{justify-content:center}
+/*wishlist card*/
+{% for block in section.blocks %}
+.wishlist__grid-item .card-main {
+{% if block.settings.borders != 'none' %}
+  border: {{ block.settings.border_width }}px {{ block.settings.border }} rgba(var(--bs-border-color),{{ block.settings.border_opacity | divided_by: 100.0 }});
+{%  endif %}
+  border-radius: {{  block.settings.border_radius }}px;
+  overflow: hidden;
+}
+.wishlist__grid-item .card-main .card-body{
+  padding-top:{{ block.settings.padding-block-start }}px;
+  padding-bottom:{{ block.settings.padding-block-end }}px;
+  padding-left:{{ block.settings.padding-inline-start }}px;
+  padding-right:{{ block.settings.padding-inline-end }}px;
+  text-align: {{ block.settings.alignment }} !important;
+}
+.wishlist__grid .card-body-information .price{
+  justify-content: {{ block.settings.alignment }} !important;
+}
+{%  endfor %}
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} isolate gradient section-{{ section.id }}-padding spacing-style" style="{% render 'spacing-style', settings:section.settings %} {% if section.settings.border == 'solid' %} {% render 'border-style', settings:section.settings %} {% endif %}">
+  <div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %} {% for block in section.blocks %} ">
+    <div class="wishlist__grid  product-grid  view-mode  grid-view-filter row g-3 card_style-card_with_overlay" >  
+      <div class="{% if block.settings.inherit_color_scheme == true %} color-{{ block.settings.color_scheme }} {% endif %} {%  endfor %} bg-transparent row row-cols-md-6 row-cols-lg-3 gy-4" grid-wishlist> </div>
+      <div class="empty_wishlist h2 color-{{ section.settings.color_scheme }}"></div>
+      <p class="wishlist__loader full-width text-center h2  color-{{ section.settings.color_scheme }}  gradient " >Loading...</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+ {
+  "name": "Wishlist options",
+  "tag": "section",
+  "class": "section collection w-100",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id":"full_width",
+      "label": "t:settings.full_width",
+      "default": false
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+     {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "limit": 1,
+      "settings": [
+         {
+      "type": "checkbox",
+      "id": "inherit_color_scheme",
+      "label": "t:settings.inherit_color_scheme",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-3",
+      "visible_if": "{{ block.settings.inherit_color_scheme == true }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "t:settings.alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "t:options.left"
+        },
+        {
+          "value": "center",
+          "label": "t:options.center"
+        },
+        {
+          "value": "end",
+          "label": "t:options.right"
+        }
+      ],
+      "default": "center",
+      "visible_if": "{{ section.settings.content_direction != 'row' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.borders"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "t:settings.style",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "t:settings.thickness",
+      "default": 1,
+      "visible_if": "{{ block.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "t:settings.opacity",
+      "default": 100,
+      "visible_if": "{{ block.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 30,
+      "unit": "px",
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wishlist options",
+      "category": "t:categories.product",
+      "blocks": [
+        {
+          "type": "card"
+        },
+      ]
+    }
+  ]
+ }
+{% endschema %}
+
+
+ 

@@ -1,0 +1,52 @@
+{% layout none %}
+
+
+  {%-liquid
+     assign search_tags = params.q | split: ' ' 
+  -%}
+
+[
+  {%- assign products_array = '' -%}
+
+  {% for product in search.results %}
+    {%- assign match_count = 0 -%}
+
+    {%- for tag in search_tags %}
+      {% if product.tags contains tag %}
+        {%- assign match_count = match_count | plus: 1 -%}
+      {% endif %}
+    {% endfor %}
+
+    {% if match_count == search_tags.size %}
+      {%- assign product_tags = '' -%}
+
+      {%- for tag in product.tags %}
+        {% if search_tags contains tag %}
+          {%- assign product_tags = product_tags | append: '"' | append: tag | append: '"' -%}
+          {%- unless forloop.last -%}
+            {%- assign product_tags = product_tags | append: ',' -%}
+          {%- endunless -%}
+        {% endif %}
+      {% endfor %}
+
+      {%- capture product_json -%}
+        {
+          "id": {{ product.id }},
+          "title": "{{ product.title | escape }}",
+          "url": "{{ product.url }}",
+          "image": {% if product.featured_image %}"{{ product.featured_image | image_url: width: 700 }}"{% else %}null{% endif %},
+          "price": {% if settings.currency_code_enabled %}"{{ product.price | money_with_currency }}"{% else %}"{{ product.price | money }}"{% endif %},
+          "tags": [{{ product_tags }}]
+        }
+      {%- endcapture -%}
+
+      {%- assign products_array = products_array | append: product_json -%}
+      {%- unless forloop.last -%}
+        {%- assign products_array = products_array | append: ',' -%}
+      {%- endunless -%}
+    {% endif %}
+  {% endfor %}
+
+  {{ products_array }}
+]
+

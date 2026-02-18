@@ -1,0 +1,42 @@
+{%- if block.settings.image_1 != blank  -%}
+<li class='p-0'>
+  <div class=" collection-cards card color-{{ block.settings.banner_color_scheme }} gradient  border overflow-hidden">
+    {%- capture dt_mega_banner_mage -%}
+      {%- unless block.settings.image_1 == blank -%}
+        <div class='card__inner position-relative ratio border-bottom 
+                ratio-1x1 p-4'>
+          <div class='p-4 card--image'>
+        {% if  block.settings.link_1  %}    
+        <a href="{{ block.settings.link_1 }}" class="link">{{ block.settings.image_1 | image_url: width: 960 | image_tag: class: 'card-img border', loading: 'lazy' }}</a>
+        {% else %}  
+       {{ block.settings.image_1 | image_url: width: 960 | image_tag: class: 'card-img border', loading: 'lazy' }}
+            {% endif %}
+          </div>
+        </div>
+      {%- endunless -%}
+    {%- endcapture -%}
+    
+    {%- if block.settings.button_1 == blank and block.settings.title_1 == blank -%}
+      <a href="{{ block.settings.link_1 }}" class="link">{{ dt_mega_banner_mage }}</a>
+    {%- else -%}
+      {{ dt_mega_banner_mage }}
+    {%- endif -%}
+    
+    {% if block.settings.title_1 != blank or block.settings.button_1 != blank %}
+      <div class="{% if block.settings.title_1 != blank %}card-body position-relative p-4 text-center {% endif %}">
+        {%- unless block.settings.button_1 == blank -%}
+          {% assign tag_length = block.settings.button_1  | size %}
+          {% if tag_length > 20 %}
+          <div class="collection_product_count_size mb-2"><span>{{ block.settings.button_1 | capitalize }}</span></div>
+          {% else %}  
+           <div class="collection_product_count "><span>{{ block.settings.button_1 | capitalize }}</span></div>  
+            {% endif %}
+        {%- endunless -%}
+        {%- unless block.settings.title_1 == blank -%}
+          <h5 class="card-title m-0"><a href="{% if block.settings.link_1 != blank %}{{ block.settings.link_1 }}{% else %}#{% endif %}" class="link text-wrap">{{ block.settings.title_1 | capitalize }}</a></h5>
+        {%- endunless -%}
+    </div>
+    {% endif %}
+  </div>
+</li>
+{%- endif -%}
