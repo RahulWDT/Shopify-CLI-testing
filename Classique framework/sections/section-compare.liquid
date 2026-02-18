@@ -1,0 +1,191 @@
+{%- style -%}
+    .dtx-grid-empty.dtx-grid-hide,
+    .dtx-table.dtx-grid-hide { display: none;}
+    .dtx-table.dtx-grid-show{ display:flex;}
+  .dtx-table.table .slick-wrapper{ grid-auto-rows:auto 50px 60px 80px; }
+    @media screen and (max-width:1199px){
+     .dtx-grid-item { min-width: 250px; }
+      .dtx-table.table .slick-wrapper{ min-width:200px; }
+      .dtx-table.table { overflow:auto;scrollbar-width: thin;}
+    }
+
+    @media screen and (max-width: 425px) {
+      .dtx-table.table .slick-wrapper:has(>.product-title) {
+          min-width: 130px;
+          display: none !important;
+      }
+  }
+    .dtx-table.table .dtx-grid-item:last-child{ border:none !important;}
+    .dtx-table .slick-wrapper{background:rgb(var(--color-background));}
+  .product-thumbnail.d-grid{
+     grid-template-rows: auto auto 1fr auto; 
+  align-items: stretch;
+  }
+  .compare.compare-wrapper .border-end{
+    border-right: {{ section.settings.border_width }}px {{ section.settings.border }} rgba(var(--bs-border-color), {{ section.settings.border_opacity }})!important
+  }
+  .compare.compare-wrapper .border-bottom{
+    border-bottom: {{ section.settings.border_width }}px {{ section.settings.border }} rgba(var(--bs-border-color), {{ section.settings.border_opacity }})!important
+  }
+
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} isolate gradient spacing-style"   style="{% render 'spacing-style', settings:section.settings %}">
+<div class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %} section-copareTemplate-padding isolate compare compare-wrapper"> 
+  <div class="row">
+    <dtx-compare-grid grid_type="compareList">
+      <div class="dtx-grid-empty text-center dtx-grid-hide">
+        <h1 class="mb-0">{{ 'products.compare.no_records' | t }}</h1>
+        <!--
+          <a href="{{ routes.all_products_collection_url }}" class=" button button--primary">
+            {{ 'general.continue_shopping' | t }}
+          </a>
+        -->
+      </div>
+      <div class="dtx-table d-none table p-0 border-style" id="compareSwiper"  style="{% render 'border-style', settings: section.settings %}">
+        <div class="slick-wrapper d-grid col px-3 align-items-center position-sticky start-0 z-1 border-end">
+          <div class="product-title d-flex align-items-center">{{ 'products.compare.title' | t }}</div>
+          <div class="pt-2 pt-lg-0">{{ 'products.compare.available' | t }}</div>
+          <div class="pt-2 pt-lg-0 d-flex align-items-center">{{ 'products.compare.type' | t }}</div>
+          <div class="pt-2 pt-lg-0 d-flex align-items-end">{{ 'products.compare.button' | t }}</div>
+        </div>
+      </div>
+
+      <div id="row_{item.product_handle}" class="grid_template" style="display: none !important;">
+        <div class="product-thumbnail p-0 border-0 position-relative d-grid flex-column">
+          <a href="{item.product_url}" class="product-thumbnail-img w-100 h-auto ratio ratio-1x1 ">
+            <img
+              loading="lazy"
+              src="{item.product_image}"
+              alt="{item.product_title}"
+              width="200"
+              height="200"
+              style="padding:0;"
+              class="img-fluid p-3"
+            >
+          </a>
+          <p class="product-vendor-cart m-0 card-captipn p-3 border-bottom  border-1" style="{% render 'border-style', settings: section.settings %}">{item.product_vendor}</p>
+          <h5 class="card-title flex-1 p-3 m-0 border-bottom  border-1" style="{% render 'border-style', settings: section.settings %}">
+            <a href="{item.product_url}" class="product-name ">{item.product_title}</a>
+          </h5>
+          <p class="product-price-cart p-3 m-0 border-bottom  border-1" style="{% render 'border-style', settings: section.settings %}">{item.money_price}</p>
+          <dtx-remove-compare-item
+            grid_type="compareList"
+            class="position-absolute bg-transparent end-0 d-flex p-0 m-3 top-0"
+            onclick="javascript(void);"
+          >
+            <a href="javascript:void(0);" data-product_handle="{item.product_handle}" class="btn-close product-cart">
+              {% render 'cancel.svg' %}
+            </a>
+          </dtx-remove-compare-item>
+        </div>
+        <div class="product-availability-cart p-3 border-bottom border-1" style="{% render 'border-style', settings: section.settings %}">{item.available}</div>
+        <div class="product-type-cart p-3 border-bottom border-1">{item.product_type}</div>
+        <div class="product-wishlist-cart p-3">
+          <a href="{item.product_url}" data-product-variant-id="{item.variant_id}" class="dt-sc-btn btn btn-primary product-cart">
+            {{ 'products.product.choose_options' | t }}
+          </a>
+        </div>
+      </div>
+    </dtx-compare-grid>
+  </div>
+</div>
+</div>
+{% schema %}
+ {
+  "name": "Compare options",
+  "tag": "section",
+  "class": "section collection w-100",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id":"full_width",
+      "label": "t:settings.full_width",
+      "default": false
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.borders"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "t:settings.style",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "t:settings.thickness",
+      "default": 1,
+      "visible_if": "{{ section.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "t:settings.opacity",
+      "default": 100,
+      "visible_if": "{{ section.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 0
+    },
+     {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+  ]
+ }
+{% endschema %}

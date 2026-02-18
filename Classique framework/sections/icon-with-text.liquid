@@ -1,0 +1,231 @@
+<div class="section-{{ section.id }} icon-with-text icon-with-text-section-{{ section.id }} color-{{ section.settings.color_scheme }} isolate gradient {{ section.settings.custom_class }}">
+  <div
+    class="{% if section.settings.full_width %}container-fluid{% else %}container{% endif %} top-bottom-spacing"
+    style="
+      --padding-top:{{ section.settings.padding-top }}px;
+      --padding-bottom:{{ section.settings.padding-bottom }}px;
+    "
+    {% if settings.animation != blank %}
+      data-aos="{{ settings.animation}}"
+    {% endif %}
+  >
+    {% content_for 'block', type: 'header-block', id: 'header-block' %}
+    {% content_for 'block', type: 'icon-content-block', id: 'icon-content-block' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:name.icon-with-text",
+  "class": "section icon-with-text-section",
+  "blocks": [],
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:settings.full_width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "header",
+      "content": "t:content.custom_class"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "t:settings.custom_class"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:name.icon-with-text",
+      "settings": {
+        "color_scheme": "scheme-1"
+      },
+      "blocks": [
+        {
+          "name": "t:name.header-block",
+          "type": "header-block",
+          "static": true,
+          "id": "header-block",
+          "settings": {
+            "padding-block-end": 50,
+            "horizontal_alignment": "center"
+          },
+          "blocks": [
+            {
+              "name": "t:name.header",
+              "type": "text",
+              "settings": {
+                "text": "<h2>Icon with text</h2>",
+                "padding-block-end": 15
+              }
+            },
+            {
+              "name": "t:settings.text",
+              "type": "description",
+              "settings": {
+                "text": "Description",
+                "padding-block-end": 15
+              }
+            },
+            {
+              "name": "t:settings.button",
+              "type": "button"
+            }
+          ]
+        },
+        {
+          "name": "t:settings.content-block",
+          "type": "icon-content-block",
+          "static": true,
+          "id": "icon-content-block",
+          "settings": {
+            "layout_type": "carousel",
+            "horizontal_gap": 24,
+            "vertical_gap": 24,
+            "columns_desktop": "3",
+            "padding-top": 0,
+            "padding-bottom": 0
+          },
+          "blocks": [
+            {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "grid_space": 24
+              },
+              "blocks": [
+                {
+                  "name": "t:settings.heading",
+                  "type": "text",
+                  "settings": {
+                    "text": "<h4>Icon Heading</h4>",
+                    "padding-block-end": 16
+                  }
+                },
+                {
+                  "name": "t:settings.text",
+                  "type": "description",
+                  "settings": {
+                    "text": "description",
+                    "padding-block-end": 16
+                  }
+                }
+              ]
+            },
+            {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "grid_space": 24
+              },
+              "blocks": [
+                {
+                  "name": "t:settings.heading",
+                  "type": "text",
+                  "settings": {
+                    "text": "<h4>Icon Heading</h4>",
+                    "padding-block-end": 16
+                  }
+                },
+                {
+                  "name": "t:settings.text",
+                  "type": "description",
+                  "settings": {
+                    "text": "description",
+                    "padding-block-end": 16
+                  }
+                }
+              ]
+            },
+            {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "grid_space": 24
+              },
+              "blocks": [
+                {
+                  "name": "t:settings.heading",
+                  "type": "text",
+                  "settings": {
+                    "text": "<h4>Icon Heading</h4>",
+                    "padding-block-end": 16
+                  }
+                },
+                {
+                  "name": "t:settings.text",
+                  "type": "description",
+                  "settings": {
+                    "text": "description",
+                    "padding-block-end": 16
+                  }
+                }
+              ]
+            },
+            {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "grid_space": 24
+              },
+              "blocks": [
+                {
+                  "name": "t:settings.heading",
+                  "type": "text",
+                  "settings": {
+                    "text": "<h4>Icon Heading</h4>",
+                    "padding-block-end": 16
+                  }
+                },
+                {
+                  "name": "t:settings.text",
+                  "type": "description",
+                  "settings": {
+                    "text": "description",
+                    "padding-block-end": 16
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

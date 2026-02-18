@@ -1,0 +1,308 @@
+{% liquid
+  assign slider_desktop = section.settings.columns_desktop | default: 3
+  assign slider_laptop = section.settings.columns_desktop | minus: 1
+  assign vartical_alignment = 'align-items-' | append: section.settings.vartical_alignment
+
+  if section.settings.columns_desktop == '2'
+    assign slider_laptop = 2
+    assign slider_tablet = 2
+  elsif section.settings.columns_desktop == '3'
+    assign slider_laptop = 3
+    assign slider_tablet = 2
+  elsif section.settings.columns_desktop == '4'
+    assign slider_laptop = 3
+    assign slider_tablet = 2
+  endif
+%}
+
+<div
+  class="counter-container layout_height  color-{{ section.settings.color_scheme }}"
+  style="
+      {% if section.settings.section_height == 'custom' %}
+      --section-min-height: {{ section.settings.section_height_custom }}svh;
+     {% elsif section.settings.section_height != 'custom' %}
+      --section-min-height: var(--section-height-{{ section.settings.section_height }});
+     {% endif %}
+     {% if section.settings.section_height != 'custom' %}
+     --section-preview-height: 600px;
+     {% endif %}
+    {% if section.settings.background_media == 'image' and section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url }}');
+      background-size: {{ section.settings.background_image_position }};
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+  "
+  {% if settings.animation != blank %}
+      data-aos="{{ settings.animation}}"
+    {% endif %}
+>
+  {% if section.settings.toggle_overlay %}
+    <div class="background-overlay background-overlay-{{ section.id }}"></div>
+  {% endif %}
+
+  <div
+    class="number-counter border-style number-counter-{{ section.id }} {% if section.settings.full_width %}container-fluid{% else %}container{% endif %}"
+    style="{% render 'border-style', settings: section.settings %}"
+  >
+    <div
+      class="counter-card-section-container layout_height"
+      style="
+        padding-top: {{ section.settings['padding-block-start'] }}px;
+        padding-bottom: {{ section.settings['padding-block-end'] }}px;
+        gap: {{ section.settings.grid_space }}px;
+      "
+    >
+      <div class="counter-title h-100">
+        {% content_for 'block', type: 'header-block', id: 'counter_title' %}
+      </div>
+      <div class="counter-image-banner h-100 ">
+        {% content_for 'block', type: 'image', id: 'counter_banner' %}
+      </div>
+      <div
+        class="counter-card-section h-100 {{ vartical_alignment }}"
+        style="
+          gap: {{ section.settings.grid_gap }}px;
+          display: grid;
+          --grid-desktop-columns: repeat({{ slider_desktop }}, 1fr);
+          --grid-laptop-columns: repeat({{ slider_laptop }},1fr);
+          --grid-tablet-columns: repeat({{ slider_tablet }},1fr);
+            --grid-mobile-columns: repeat(1, 1fr);
+        "
+      >
+        {% content_for 'blocks' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+    .counter-container {
+      position: relative;
+
+    }
+
+    .background-overlay-{{ section.id }} {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+
+      {% if section.settings.overlay_style == 'solid' %}
+        background: {{ section.settings.overlay_color }};
+      {% elsif section.settings.overlay_style == 'gradient' %}
+        background: linear-gradient(
+          {{ section.settings.gradient_direction }},
+          {{ section.settings.overlay_color }},
+          transparent
+        );
+      {% endif %}
+    }
+
+    .counter-card-section {
+      grid-template-columns: var(--grid-mobile-columns);
+    }
+
+      @media screen and (width >= 576px) {
+      .counter-card-section {
+        grid-template-columns:var(--grid-tablet-columns);
+      }
+    }
+
+  @media screen and (width >= 992px) {
+      .counter-card-section {
+        grid-template-columns:var(--grid-laptop-columns);
+      }
+    }
+
+
+     @media screen and (width >= 1200px) {
+      .counter-card-section {
+        grid-template-columns:var(--grid-desktop-columns);
+      }
+    }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "t:name.number_count",
+  "class": "section number-counter",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "blocks": [{ "type": "counter_card" }],
+  "max_blocks": 4,
+  "settings": [
+    { "type": "checkbox", "id": "full_width", "label": "t:settings.full_width" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:settings.color_scheme" },
+
+    { "type": "header", "content": "t:content.layout" },
+    {
+      "type": "range",
+      "id": "grid_space",
+      "label": "t:settings.vertical_gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "t:settings.horizontal_gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "t:settings.height",
+      "options": [
+        {
+          "value": "small",
+          "label": "t:options.small"
+        },
+        {
+          "value": "medium",
+          "label": "t:options.medium"
+        },
+        {
+          "value": "large",
+          "label": "t:options.large"
+        },
+        {
+          "value": "custom",
+          "label": "t:options.custom"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "t:settings.columns_desktop",
+      "options": [
+        {
+          "value": "2",
+          "label": "t:options.column_2"
+        },
+        {
+          "value": "3",
+          "label": "t:options.column_3"
+        },
+        {
+          "value": "4",
+          "label": "t:options.column_4"
+        }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "range",
+      "id": "section_height_custom",
+      "label": "t:settings.custom_height",
+      "min": 50,
+      "max": 100,
+      "step": 1,
+      "default": 50,
+      "unit": "%",
+      "visible_if": "{{ section.settings.section_height == 'custom' }}"
+    },
+    { "type": "header", "content": "t:content.padding" },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "t:name.number_count",
+      "blocks": [
+        {
+          "type": "header-block",
+          "id": "counter_title",
+          "static": true,
+          "settings": {
+            "padding-block-end": 40
+          },
+          "blocks": [
+            {
+              "type": "text",
+              "settings": {
+                "text": "<h2>Number Counter</h2>"
+              }
+            },
+            {
+              "type": "description",
+              "settings": {
+                "text": "Description"
+              }
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "id": "counter_banner",
+          "static": true,
+          "settings": {
+            "aspect_ratio": "landscape"
+          }
+        },
+        {
+          "type": "counter_card",
+          "blocks": [
+            { "type": "number-counter" },
+            { "type": "text", "settings": { "text": "<h2>Title</h2>" } },
+            { "type": "description", "settings": { "text": "Lorem ipsum dolor sit amet" } }
+          ]
+        },
+        {
+          "type": "counter_card",
+          "blocks": [
+            { "type": "number-counter" },
+            { "type": "text", "settings": { "text": "<h2>Title</h2>" } },
+            { "type": "description", "settings": { "text": "Lorem ipsum dolor sit amet" } }
+          ]
+        },
+        {
+          "type": "counter_card",
+          "blocks": [
+            { "type": "number-counter" },
+            { "type": "text", "settings": { "text": "<h2>Title</h2>" } },
+            { "type": "description", "settings": { "text": "Lorem ipsum dolor sit amet" } }
+          ]
+        },
+        {
+          "type": "counter_card",
+          "blocks": [
+            { "type": "number-counter" },
+            { "type": "text", "settings": { "text": "<h2>Title</h2>" } },
+            { "type": "description", "settings": { "text": "Lorem ipsum dolor sit amet" } }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

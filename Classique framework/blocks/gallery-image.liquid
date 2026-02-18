@@ -1,0 +1,327 @@
+{% liquid
+  assign media_width_desktop = '100vw'
+  assign media_width_mobile = '100vw'
+  assign sizes = 'auto, (min-width: 750px) ' | append: media_width_desktop | append: ', ' | append: media_width_mobile
+  assign widths = '300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800, 1950, 2000, 2500, 3000, 3500, 4000, 5000'
+  assign ratio = 'ratio-auto'
+%}
+
+<style>
+
+  svg.icon_with_text_block.icon-block-{{ block.id }} {
+    width:{{ block.settings.icon_width }}px !important;
+    height:{{ block.settings.icon_width }}px !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    display:none;
+    transition: all 0.3s ease-in-out;
+    fill:rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  }
+  .gallery-image-block-{{ block.id }}:hover svg.icon_with_text_block.icon-block-{{ block.id }}{
+    display:block;
+  }
+</style>
+{% assign icon = 'icon_block_image icon-block-' | append: block.id %}
+{% capture icon %}
+      <svg
+      class="icon_with_text_block {{ icon }}"
+      aria-hidden="true"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
+      width="{{ block.settings.icon_width }}"
+      height="{{ block.settings.icon_width }}"
+      viewBox="0 0 20 20"
+      {{ block.shopify_attributes }}
+    >
+      {%- render 'icon', icon: block.settings.hover_icon -%}
+    </svg>
+    {% endcapture %}
+<div
+  class="swiper-slide {{ ratio }} spacing-style  border-style  gallery-image-block gallery-image-block-{{ block.id }} overflow-hidden size-style"
+  style="{% render 'spacing-style', settings:block.settings %} {% render 'border-style', settings:block.settings %}  {% render 'size-style-height', settings:block.settings %}"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.image != blank -%}
+
+    {% if block.settings.link != blank  %}<a href="{{ block.settings.link }}">
+      <div class="gallery-image-main-block ratio {{ ratio }}" style="
+            --aspect-ratio: {%- if block.settings.image -%}{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}% ; "
+        {% endif %}
+        
+      >
+    {{
+      block.settings.image
+      | image_url: width: 3840
+      | image_tag:
+        width: block.settings.image.width,
+        widths: widths,
+        sizes: sizes,
+        class: 'object-fit-cover image-block w-100 h-100'
+    }}
+    </div>
+    </a>
+    {% else %}
+      <div class="gallery-image-main-block ratio {{ ratio }}"
+        style="
+          --aspect-ratio:  {%- if block.settings.image -%}{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}% ;
+        "
+      {% endif %}
+      >
+      {{
+      block.settings.image
+      | image_url: width: 3840
+      | image_tag:
+        width: block.settings.image.width,
+        widths: widths,
+        sizes: sizes,
+        class: 'object-fit-cover image-block w-100 h-100'
+    }}
+    </div>
+  {% endif %}
+  {%- else -%}
+    {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">
+    <div class="placeholder-image">
+      {{ 'image' | placeholder_svg_tag: 'image-placeholder-svg w-100 h-100' }}
+    </div>
+    </a>
+    {% else %}
+    <div class="placeholder-image">
+      {{ 'image' | placeholder_svg_tag: 'image-placeholder-svg w-100 h-100' }}
+    </div>
+    {% endif %}
+  {%- endif -%}
+
+  {% if block.settings.hover_icon != 'none'%}
+  <div class="hover-icon hover-icon--{{ block.id }}">
+{%- if block.settings.link != blank -%}
+  <a
+    href="{{ block.settings.link }}"
+    class=""
+  >
+    {{ icon }}
+  </a>
+{%- else -%}
+  {{ icon }}
+{%- endif -%}
+
+  </div>
+  {% endif %}
+
+</div>
+
+{% schema %}
+{
+  "name": "t:settings.gallary-image",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:settings.image"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:settings.link"
+    },
+     {
+      "type": "select",
+      "id": "hover_icon",
+      "label": "t:name.icon",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "facebook",
+          "label": "t:options.social_facebook"
+        },
+        {
+          "value": "instagram",
+          "label": "t:options.social_instagram"
+        },
+        {
+          "value": "linkedin",
+          "label": "t:options.social_linkedin"
+        },
+        {
+          "value": "pinterest",
+          "label": "t:options.social_pinterest"
+        },
+        {
+          "value": "snapchat",
+          "label": "t:options.social_snapchat"
+        },
+        {
+          "value": "spotify",
+          "label": "t:options.social_spotify"
+        },
+        {
+          "value": "threads",
+          "label": "t:options.social_threads"
+        },
+        {
+          "value": "tiktok",
+          "label": "t:options.social_tiktok"
+        },
+        {
+          "value": "tumblr",
+          "label": "t:options.social_tumblr"
+        },
+        {
+          "value": "twitter",
+          "label": "t:options.social_twitter"
+        },
+        {
+          "value": "vimeo",
+          "label": "t:options.social_vimeo"
+        },
+        {
+          "value": "youtube",
+          "label": "t:options.social_youtube"
+        },
+        {
+          "value": "whatsapp",
+          "label": "t:options.social_whatsapp"
+        },
+        {
+          "value": "arrow",
+          "label": "t:options.arrow"
+        },
+        {
+          "value": "check_box",
+          "label": "t:options.check_box"
+        },
+        {
+          "value": "heart",
+          "label": "t:options.heart"
+        },
+        {
+          "value": "star",
+          "label": "t:options.star"
+        },
+      ],
+      "default": "instagram"
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "label": "t:settings.width",
+      "min": 12,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 24,
+      "visible_if": "{{ block.settings.hover_icon != 'none' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:settings.border"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "t:settings.style",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "t:settings.thickness",
+      "default": 1,
+      "visible_if": "{{ block.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "t:settings.opacity",
+      "default": 100,
+      "visible_if": "{{ block.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "t:settings.border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+ 
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:settings.gallary-image",
+      "category": "t:categories.basic"
+    }
+  ]
+}
+{% endschema %}

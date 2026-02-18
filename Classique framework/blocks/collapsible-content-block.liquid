@@ -1,0 +1,281 @@
+{% assign accordion_font_size = '' %}
+{% case block.settings.type_preset %}
+  {% when 'h1' -%}
+    {%- assign accordion_font_size = '--bs-font-h1-size' %}
+  {% when 'h2' -%}
+    {%- assign accordion_font_size = '--bs-font-h2-size' %}
+  {% when 'h3' -%}
+    {%- assign accordion_font_size = '--bs-font-h3-size' %}
+  {% when 'h4' -%}
+    {%- assign accordion_font_size = '--bs-font-h4-size' %}
+  {% when 'h5' -%}
+    {%- assign accordion_font_size = '--bs-font-h5-size' %}
+  {% when 'h6' -%}
+    {%- assign accordion_font_size = '--bs-font-h6-size' %}
+  {% when 'paragraph' -%}
+    {%- assign accordion_font_size = '' %}
+{% endcase %}
+{% if block.settings.type_preset == 'paragraph' %}
+  {% assign accordian_font_family = '--font-body-family' %}
+{% else %}
+  {% assign accordian_font_family = '--font-heading-family' %}
+{% endif %}
+
+
+
+{% style %}
+     .accordion.accordion--{{ block.id }} .accordion-button{
+       font-size:var({{accordion_font_size}});
+       font-family:var({{accordian_font_family}});
+       padding-inline: 0;
+     }
+     .accordion.accordion--{{ block.id }}{
+     {% if block.settings.dividers %}
+     --bs-accordion-border-width:1px;
+     {% else %}
+       --bs-accordion-border-width:0px;
+     {% endif %}
+     {% if block.settings.icon == 'caret' %}
+     --bs-accordion-plus-icon:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%23000000"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>');
+    --bs-accordion-btn-active-icon:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%23000000"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>');
+     {% endif %}
+     }
+
+  .collapsible-content-section{ position: relative;}
+    .collapsible-content-section .section_container.section_container--{{ section.id }}{
+      position:relative;
+      width:100%;
+      height:100%;
+
+    }
+
+
+    @media(min-width:768px){
+    
+    .collapsible-content-section .section_container.section_container--{{ section.id }} .accordion-content-block.accordion-content-block--{{ block.id }} .collapsible-content-image,
+    .collapsible-content-section .section_container.section_container--{{ section.id }} .accordion-content-block.accordion-content-block--{{ block.id }} .accordion.accordion--{{ block.id }}{
+      position:sticky;
+      top:0;
+      height:fit-content;
+    }
+
+  }
+
+   
+  @media(min-width:1024px){
+      .collapsible-content-section .section_container.section_container--{{ section.id }} .accordion-content-block.accordion-content-block--{{ block.id }}{ flex-wrap:nowrap;}
+  }
+{% endstyle %}
+
+
+
+{% liquid
+
+  assign media_width_desktop = '100vw'
+  assign media_width_mobile = '100vw'
+  assign sizes = 'auto, (min-width: 750px) ' | append: media_width_desktop | append: ', ' | append: media_width_mobile
+  assign widths = '300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800, 1950, 2000, 2500, 3000, 3500, 4000, 5000'
+%}
+
+<div
+  class="accordion-content-block accordion-content-block--{{ block.id }} row mx-0 flex-column flex-md-{{ block.settings.image_placement }} gap-style top-bottom-spacing"
+  style="
+    --gap-style: max(calc(var(--space-scale, 1.0) * {{ block.settings.grid_space }}px));
+     --padding-top:{{ block.settings.padding-block-start }}px;
+    --padding-bottom:{{ block.settings.padding-block-end }}px;
+  "
+>
+  <div class="accordion {% if block.settings.collapsible_content_image == blank %} col-12 col-lg-10 mx-auto px-0{% else %} col p-0{% endif %} accordion--{{ block.id }}  border-style" id="accordionExample" {{ block.shopify_attributes }}>
+    {% content_for 'blocks' %}
+  </div>
+  {% if block.settings.collapsible_content_image %}
+    <div class="collapsible-content-image col p-0">
+      {{
+        block.settings.collapsible_content_image
+        | image_url: width: 3840
+        | image_tag: widths: widths, sizes: sizes, class: 'object-fit-cover  w-100 h-100'
+      }}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:settings.content-block",
+  "blocks": [{ "type": "_accordian_row" }],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "collapsible_content_image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "t:settings.icon",
+      "options": [
+        {
+          "value": "caret",
+          "label": "t:options.caret"
+        },
+        {
+          "value": "plus",
+          "label": "t:options.plus"
+        }
+      ],
+      "default": "caret"
+    },
+    {
+      "type": "checkbox",
+      "id": "dividers",
+      "label": "t:settings.dividers",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "t:content.typography",
+      "options": [
+        {
+          "value": "h3",
+          "label": "t:options.h3"
+        },
+        {
+          "value": "h4",
+          "label": "t:options.h4"
+        },
+        {
+          "value": "h5",
+          "label": "t:options.h5"
+        },
+      ],
+      "default": "h4",
+      "info": "t:info.edit_presets_in_theme_settings"
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout",
+      "visible_if": "{{ block.settings.collapsible_content_image !=blank }}"
+    },
+    {
+      "type": "select",
+      "id": "image_placement",
+      "label": "t:settings.image_position_desktop",
+      "options": [
+        {
+          "value": "row",
+          "label": "t:options.left"
+        },
+        {
+          "value": "row-reverse",
+          "label": "t:options.right"
+        }
+      ],
+      "default": "row",
+      "visible_if": "{{ block.settings.collapsible_content_image !=blank }}"
+    },
+    {
+      "type": "range",
+      "id": "grid_space",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:settings.gap",
+      "default": 0,
+      "visible_if": "{{ block.settings.collapsible_content_image !=blank }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:settings.content-block",
+      "settings": {
+        "grid_space": 36
+      },
+      "blocks": [
+        {
+          "type": "_accordian_row",
+          "settings": {
+            "open_by_default": true,
+            "heading": "Return policy"
+          },
+          "blocks": [
+            {
+              "type": "description",
+              "settings": {
+                "text": "We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location."
+              }
+            }
+          ]
+        },
+        {
+          "type": "_accordian_row",
+          "settings": {
+            "heading": "Shipping"
+          },
+          "blocks": [
+            {
+              "type": "description",
+              "settings": {
+                "text": "Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value."
+              }
+            }
+          ]
+        },
+        {
+          "type": "_accordian_row",
+          "settings": {
+            "heading": "Manufacturing"
+          },
+          "blocks": [
+            {
+              "type": "description",
+              "settings": {
+                "text": "Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right."
+              }
+            }
+          ]
+        },
+        {
+          "type": "_accordian_row",
+          "settings": {
+            "heading": "Manufacturing"
+          },
+          "blocks": [
+            {
+              "type": "description",
+              "settings": {
+                "text": "Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

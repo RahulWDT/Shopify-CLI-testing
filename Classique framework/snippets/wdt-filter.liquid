@@ -1,0 +1,763 @@
+<style>
+{% if collapse %}  
+  .filter_item_label{position:relative;}
+.filter_item_label:before{ 
+  content:""; 
+  position:absolute; 
+  width:10px; 
+  height:10px; 
+  /* background-image: url('data:image/svg+xml,<svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.15374 1.21571L1.15374 1.21571L1.15438 1.21503C1.5955 0.742834 2.18264 0.5 2.77556 0.5C3.36848 0.5 3.95561 0.742834 4.39673 1.21503L9.50061 6.67839L14.6032 1.21507L14.6039 1.21435C15.0457 0.743209 15.631 0.500001 16.2244 0.500001C16.8174 0.500001 17.4045 0.742834 17.8456 1.21503L17.8463 1.21571C18.2848 1.6869 18.5 2.29665 18.5 2.90062C18.5 3.50401 18.2851 4.11571 17.8457 4.58617C17.8456 4.58618 17.8456 4.58619 17.8456 4.5862L11.1219 11.7849L11.1212 11.7857C10.6794 12.2568 10.0941 12.5 9.50065 12.5C8.90773 12.5 8.3206 12.2572 7.87947 11.785L1.15438 4.5862C0.714876 4.11574 0.5 3.50403 0.5 2.90062C0.5 2.29665 0.715208 1.6869 1.15374 1.21571Z" fill="white" stroke="black"/></svg>'); */
+  /* -webkit-background-image: url('data:image/svg+xml,<svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.15374 1.21571L1.15374 1.21571L1.15438 1.21503C1.5955 0.742834 2.18264 0.5 2.77556 0.5C3.36848 0.5 3.95561 0.742834 4.39673 1.21503L9.50061 6.67839L14.6032 1.21507L14.6039 1.21435C15.0457 0.743209 15.631 0.500001 16.2244 0.500001C16.8174 0.500001 17.4045 0.742834 17.8456 1.21503L17.8463 1.21571C18.2848 1.6869 18.5 2.29665 18.5 2.90062C18.5 3.50401 18.2851 4.11571 17.8457 4.58617C17.8456 4.58618 17.8456 4.58619 17.8456 4.5862L11.1219 11.7849L11.1212 11.7857C10.6794 12.2568 10.0941 12.5 9.50065 12.5C8.90773 12.5 8.3206 12.2572 7.87947 11.785L1.15438 4.5862C0.714876 4.11574 0.5 3.50403 0.5 2.90062C0.5 2.29665 0.715208 1.6869 1.15374 1.21571Z" fill="white" stroke="black"/></svg>'); */
+  mask-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 100 100' style='enable-background:new 0 0 100 100;' xml:space='preserve'%3E%3Cpath d='M29.9,33c-1.2-1.3-2.9-2-4.5-2c-1.6,0-3.3,0.7-4.5,2c-1.2,1.3-1.9,3-1.9,4.8c0,1.7,0.6,3.5,1.9,4.8L45,68 c1.2,1.3,2.9,2,4.5,2c1.6,0,3.3-0.7,4.5-2l24.1-25.5c1.2-1.3,1.9-3,1.9-4.8c0-1.7-0.6-3.4-1.9-4.8c-1.2-1.3-2.9-2-4.5-2 c-1.6,0-3.3,0.7-4.5,2L49.5,53.7L29.9,33z'/%3E%3C/svg%3E%0A");
+  mask-position: center; 
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  background-color:currentcolor;
+  width: 1em; 
+  height: 1em; 
+  right: 0; 
+  top: 10px;
+  /* bottom: 0; 
+  margin: auto; */
+  font-size:20px;
+  transform: rotate(180deg);
+  transition:var(--bs-transition);
+  font-size: var(--bs-font-h5-size);
+}
+.filter_item_label.collapsed:before{ 
+   transform: rotate(0deg);
+}
+
+
+{% endif %}
+</style>
+{% liquid
+  if template == 'search'
+    assign filters = search.filters
+  else
+    assign filters = collection.filters
+  endif
+%}
+
+<product-filters>
+  {% if filter_layout == 'drawer' %}
+    <!-- Active Filters  mobile -->
+    {% render 'active-filters', show_active_filters: block.settings.show_active_filters, filters: filters %}
+    <!-- Active Filters End -->
+  {% endif %}
+  <div
+    class="facets-container   justify-content-between   border-0  {% if layout == 'vertical' or layout == 'horizontal' %}filter_layout-canvas-triggered{% endif %} {% if collection.products.size == 0 %}d-none{% endif %}"
+    id="fliter-accordion"
+    tabindex="-1"
+  >
+    {% if layout == 'vertical' or layout == 'horizontal' %}
+      <!-- Offcanvas button for mobile view -->
+      <button
+        class="facts__drawer d-lg-none border btn btn-primary  {% unless block.settings.inherit_color_scheme %} color-{{ block.settings.filter_color_scheme }}  {% endunless %} "
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#filtersOffcanvas"
+        aria-controls="filtersOffcanvas"
+        tabindex="0"
+      >
+        {{ 'products.facets.filter_button' | t }}
+      </button>
+
+      <!-- Offcanvas for mobile view -->
+      <div
+        class="mobile-canvas offcanvas offcanvas-start   {% unless block.settings.inherit_color_scheme %}color-{{ block.settings.filter_color_scheme }} {% else %} color-{{ settings.offcanvas_color_scheme }} {% endunless %} gradient"
+        tabindex="-1"
+        id="filtersOffcanvas"
+        aria-labelledby="filtersOffcanvasLabel"
+        data-canvas-type="mobile"
+      >
+        <div class="offcanvas-header border-bottom justify-content-between">
+          <h3 class="offcanvas-title" id="filtersOffcanvasLabel">{{ 'products.facets.filter_button' | t }}</h3>
+          <button
+            id="filterClose"
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          >
+            {% render 'cancel.svg' %}
+          </button>
+        </div>
+        <div class="offcanvas-body">
+    {% endif %}
+    <!-- Filters form (shown in mobile view inside the offcanvas) -->
+    <form id="FacetFiltersFormMobile" class="FacetFiltersForm FacetFiltersFormMobile d-block d-lg-none">
+      {% if template == 'search' %} <input type="hidden" name="q" value="{{ search.terms }}">{% endif %}
+      <div class="filters-container">
+        {%- for filter in filters -%}
+          {% liquid
+            if filter.presentation == 'image'
+              assign show_more_count = 20
+            else
+              assign show_more_count = 5
+            endif
+          %}
+          <div
+            class="presentation-method-{{ filter.presentation }} filter-panel filter-item"
+            data-filter-label="{{ filter.label | handleize }}"
+          >
+            {% comment %} <h4 class="mb-0" id="{{ filter.label | handleize }}">{{ filter.label }}</h4> {% endcomment %}
+             {% if collapse %}
+             <h4 class="mb-0">
+                <button
+                  class="filter_item_label pe-4 ps-0  bg-transparent border-0 w-100 d-flex justify-content-between text-reset"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#{{ filter.label | handleize }}"
+                  aria-expanded="false"
+                  aria-controls="{{ filter.label | handleize }}"
+                  type="button">
+                  {{ filter.label }}
+                </button>
+              </h4>
+            {% else %}
+              <h4 class="mb-0" id="{{ filter.label | handleize }}">{{ filter.label }}</h4>
+            {%  endif %}
+            <div>
+              {%- case filter.type -%}
+                {%- when 'boolean' -%}
+                  <ul class="filter-options list-group pt-4 {% if collapse %}collapse show{% endif %}" aria-labelledby="{{ filter.label | handleize }}"
+                    {%- if collapse %} id="{{ filter.label | handleize }}"{% endif -%}>
+                    <li class="facets__item">
+                      <input
+                        type="checkbox"
+                        name="{{ filter.param_name }}"
+                        value="{{ filter.true_value.value }}"
+                        id="Filter-{{ filter.param_name }}-{{ filter.true_value.value }}"
+                        {% if filter.true_value.active -%}
+                          checked
+                        {%- endif %}
+                        {% if filter.true_value.count == 0 and filter.true_value.active == false -%}
+                          disabled
+                        {%- endif %} 
+                          tabindex="0"
+                      >
+                      <label
+                        for="Filter-{{ filter.param_name }}-{{ filter.true_value.value }}"
+                        class="facet-checkbox {% if filter.param_name contains 'tag' %} h6 mb-0{% endif %}"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="icon icon-checkmark"
+                          width="1.1rem"
+                          height="0.7rem"
+                          viewBox="0 0 11 7"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        {{- filter.true_value.label }}
+                      </label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        name="{{ filter.param_name }}"
+                        value="{{ filter.false_value.value }}"
+                        id="Filter-{{ filter.param_name }}-{{ filter.false_value.value }}"
+                        {% if filter.false_value.active -%}
+                          checked
+                        {%- endif %}
+                        {% if filter.false_value.count == 0 and filter.false_value.active == false -%}
+                          disabled
+                        {%- endif %}
+                      >
+                      <label
+                        for="Filter-{{ filter.param_name }}-{{ filter.false_value.value }}"
+                        class="facet-checkbox {% if filter.param_name contains 'tag' %} h6 mb-0{% endif %}"
+                      >
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="1" y="1" width="16" height="16" rx="8" stroke="black" stroke-width="2"/>
+                        </svg>
+
+                        <svg
+                          aria-hidden="true"
+                          class="icon icon-checkmark"
+                          width="1.1rem"
+                          height="0.7rem"
+                          viewBox="0 0 11 7"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        {{- filter.false_value.label }}
+                      </label>
+                    </li>
+                  </ul>
+                {%- when 'list' -%}
+                   <div class="{% if collapse %}collapse show{% endif %} {% if filter.values.size > show_more_count %} show_more_count{% endif %}" 
+
+                     {% if collapse %} id="{{ filter.label | handleize }}"{% endif %} aria-labelledby="{{ filter.label | handleize }}" >
+                  <ul
+                    class="filter-options list-group facets-wrap pt-4"
+                    aria-labelledby="{{ filter.label | handleize }}"
+                  >
+                    {%- for filter_value in filter.values -%}
+                      <li class="facets__item {% if forloop.index > show_more_count %} show-more-item hidden{% endif %}">
+                        <input
+                          type="checkbox"
+                          name="{{ filter_value.param_name }}"
+                          value="{{ filter_value.value }}"
+                          id="Filter-{{ filter.param_name }}-{{ forloop.index }}-mobile"
+                          {% if filter_value.active -%}
+                            checked
+                          {%- endif %}
+                          {% if filter_value.count == 0 and filter_value.active == false -%}
+                            disabled
+                          {%- endif %}
+                        >
+                        <label
+                          for="Filter-{{ filter.param_name }}-{{ forloop.index }}-mobile"
+                          class="facet-checkbox {% if filter.param_name contains 'tag' %} h6 mb-0{% endif %}"
+                        >
+                          {% if filter.presentation == 'image' %}
+                            <div class="presentation-image filter-image-wrapper">
+                              {% if filter_value.image %}
+                                {{
+                                  filter_value.image
+                                  | image_url: width: 50
+                                  | image_tag: class: 'filter-image rounded', alt: filter_value.alt
+                                }}
+                              {% endif %}
+                            </div>
+                          {% elsif filter.presentation == 'swatch' %}
+                            <span
+                              class="presentation-swatch swatch d-inline-block"
+                              style="
+                                width: 25px;
+                                height: 25px;
+                                background-color: {{ filter_value.swatch.color }};
+                                background-image: {% if filter_value.swatch.image %}url('{{ filter_value.swatch.image | image_url: width: 50 }}'){% endif %};
+                                background-size: cover;
+                                background-position: center;
+                                margin-right:8px;
+                                border: var(--border-width) solid rgba(var(--bs-border-color),1);
+                                border-radius: {% if settings.swatch_shape == 'circle' %}50%{% else %}0{% endif %};
+                              "
+                            ></span>
+                          {% endif %}
+
+                          <span class="tool_tip label">
+                            {{ filter_value.label }}
+                            {%- if show_filter_count -%}[{{ filter_value.count }}]{%- endif -%}
+                          </span>
+                        </label>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                  {%- if filter.values.size > show_more_count -%}
+                    <show-more-button>
+                      <button
+                        class="button-show-more link underlined-link bg-transparent border-0 p-0 mt-2 "
+                        id="Show-More-{{ forloop.index }}-{{ section.id }}"
+                        type="button"
+                      >
+                        <span class="label-show-more label-text text-decoration-underline">{{ 'products.facets.show_more' | t -}}</span>
+                        <span class="label-show-less label-text text-decoration-underline hidden">{{ 'products.facets.show_less' | t -}}</span>
+                      </button>
+                    </show-more-button>
+                  {%- endif %}
+                </div>
+                {%- when 'price_range' -%}
+                  <price-range
+                    class="filter-options list-group   {% if layout == 'drawer' or layout == 'vertical' %}{% if collapse %}collapse show{% endif %}{% endif %}"
+                    aria-labelledby="{{ filter.label | handleize }}"
+                  >
+                    {%- assign max_price_amount = filter.range_max | money | strip_html | escape -%}
+                    <span class="facets__selected mb-3 pt-4">
+                      {{- 'products.facets.max_price' | t: price: max_price_amount -}}
+                    </span>
+                    <div class="position-relative" style="display:none;">
+                      <input
+                        id="mobile-fromSlider"
+                        class="range"
+                        data="min-price"
+                        {% if filter.min_value.value %}
+                          value="
+                            {%- if uses_comma_decimals -%}
+                            {{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '' }}
+                            {% else %}
+                            {{ filter.min_value.value | money_without_currency | replace: ',', '' }}
+                            {% endif %}
+                          "
+                        {% else %}
+                          value="0"
+                          min="0"
+                          step="0.5"
+                          max="
+                            {%- if uses_comma_decimals -%}
+                            {{ filter.range_max | divided_by: 2 | money_without_currency | replace: '.', '' | replace: ',', '' }}
+                            {% else %}
+                            {{ filter.range_max | divided_by: 2 | money_without_currency | replace: ',', '' }}
+                            {% endif %}
+                          "
+                        {% endif %}
+                        type="range"
+                      >
+                      <label for="mobile-fromSlider" class="visually-hidden">{{ 'products.facets.from' | t }}</label>
+                      <output class="bubble"></output>
+                      <input
+                        id="mobile-toSlider"
+                        class="range"
+                        data="max-price"
+                        step="0.5"
+                        style="z-index:0"
+                        {% if filter.max_value.value %}
+                          value="
+                            {%- if uses_comma_decimals -%}
+                            {{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '' }}
+                            {% else %}
+                            {{ filter.max_value.value | money_without_currency | replace: ',', '' }}
+                            {% endif %}
+                          "
+                        {% else %}
+                          value="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          min="{{ filter.range_max | divided_by: 2 | money_without_currency | replace: ',', '' }}"
+                        {% endif %}
+                        value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                        type="range"
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      >
+                      <label for="mobile-toSlider" class="visually-hidden">{{ 'products.facets.to' | t }}</label>
+                      <output class="bubble"></output>
+                    </div>
+
+                    <div class="default-fields d-flex pb-2 gap-2 w-100">
+                      <div class="field_input border d-flex  w-100">
+                        <span class="field-currency align-self-center ms-3 opacity-50">{{ cart.currency.symbol }}</span>
+                        <input
+                          name="{{ filter.min_value.param_name }}"
+                          id="Filter-{{ filter.label | escape }}-mobile-GTE"
+                          class="form-control shadow-none field__input_min border-0"
+                          type="number"
+                          placeholder="0"
+                          min="0"
+                          max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                        >
+                        <label for="Filter-{{ filter.label | escape }}-mobile-GTE" class="visually-hidden">
+                          {{- 'products.facets.from' | t -}}
+                        </label>
+                      </div>
+                      <div class="field_input border d-flex  w-100">
+                        <span class="field-currency align-self-center ms-3 opacity-50">{{ cart.currency.symbol }}</span>
+                        <input
+                          name="{{ filter.max_value.param_name }}"
+                          id="Filter-{{ filter.label | escape }}-mobile-LTE"
+                          class="form-control shadow-none field__input_max border-0"
+                          type="number"
+                          placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          min="1"
+                          max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                        >
+                        <label for="Filter-{{ filter.label | escape }}-mobile-LTE" class="visually-hidden">
+                          {{- 'products.facets.to' | t -}}
+                        </label>
+                      </div>
+                    </div>
+                    <div
+                      tabindex="0"
+                      aria-label="{{ 'products.facets.apply' | t }}"
+                      id="applyPriceFilter"
+                      class="apply-price-filter btn btn-primary "
+                    >
+                      {{ 'products.facets.apply' | t }}
+                    </div>
+                  </price-range>
+              {%- endcase -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </form>
+    {% if layout == 'vertical' or layout == 'horizontal' %}
+      {% liquid
+        if template == 'search'
+          assign terms = search.terms | escape
+          assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+        else
+          assign results_url = ''
+        endif
+      %}
+      <div
+        class="offcanvas-footer  px-5 py-4"
+      >
+        <button class="btn btn-primary btn-filters-view-results w-100" type="button" data-bs-dismiss="offcanvas">
+          {% if template == 'collection' %}
+            {{ 'products.facets.view_results' | t: count: collection.products_count }}
+          {% else %}
+            {{ 'products.facets.view_results' | t: count: search.results_count }}
+          {% endif %}
+        </button>
+        <button
+          data-path="{{ results_url }}"
+          class="btn btn-link clear-all-filters btn-sm w-100 mt-2 mb-n2 d-none"
+          type="button"
+          data-bs-dismiss="offcanvas"
+          hidden
+        >
+          {{ 'products.facets.remove_all' | t }}
+        </button>
+      </div>
+
+      </div>
+      </div>
+    {%- endif %}
+    <!-- Filters form (shown directly in desktop view) -->
+    <form id="FacetFiltersFormDesktop" class="FacetFiltersForm filter__form d-none d-lg-block ">
+      {% if template == 'search' %} <input type="hidden" name="q" value="{{ search.terms }}">{% endif %}
+      <div class="filters-container filter-layout-{{ layout }}">
+        {%- for filter in filters -%}
+          {% liquid
+            if filter.presentation == 'image'
+              assign show_more_count = 20
+            else
+              assign show_more_count = 5
+            endif
+          %}
+          <div
+            class="presentation-method-{{ filter.presentation }} filter-panel filter-item{% if layout == 'horizontal' %} dropdown{% endif %}"
+            data-filter-label="{{ filter.label | handleize }}"
+          >
+            {%- if layout == 'horizontal' %}
+              <button
+                class="mb-0 btn btn-secondary dropdown-toggle   shadow-none p-2"
+                type="button"
+                id="{{ filter.label | handleize }}-heading"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                {{ filter.label }}
+                {% render 'arrow-svg' %}
+              </button>
+            {%- else -%}
+              <h4 class="mb-0">
+                <button
+                  class="filter_item_label pe-4 ps-0  bg-transparent border-0 w-100 d-flex justify-content-between text-reset"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#{{ filter.label | handleize }}"
+                  aria-expanded="false"
+                  aria-controls="{{ filter.label | handleize }}"
+                  type="button"
+                >
+                  {{ filter.label }}
+                </button>
+              </h4>
+
+              <!--
+                <h4
+                  class="mb-0{% if collapse %} filter_item_label pe-4 {% endif %}"
+                  id="{{ filter.label | handleize }}-heading"
+                  {% if collapse %}
+                    data-bs-toggle="collapse" href="#{{ filter.label | handleize }}" role="button" aria-expanded="false"
+                    aria-controls="{{ filter.label | handleize }}"
+                  {% endif %}
+                >
+                  {{ filter.label }}
+                </h4>
+              -->
+            {%- endif -%}
+            {%- case filter.type -%}
+              {%- when 'boolean' -%}
+                <ul
+                  class="{% if layout == 'drawer' or layout == 'vertical' %}{% if collapse %}collapse show{% endif %}{% endif %} {% if layout == 'horizontal' %}dropdown-menu mt-3{% else %}filter-options list-group{% endif -%}"
+                  aria-labelledby="{{ filter.label | handleize }}"
+                  {% if layout == 'drawer' or layout == 'vertical' %}
+                    {%- if collapse %} id="{{ filter.label | handleize }}"{% endif -%}
+                  {% endif %}
+                >
+                  <li class="facets__item {% if layout == 'horizontal' %}dropdown-item{% endif %}">
+                    <input
+                      type="checkbox"
+                      name="{{ filter.param_name }}"
+                      value="{{ filter.true_value.value }}"
+                      id="Filter-{{ filter.param_name }}"
+                      {% if filter.true_value.active -%}
+                        checked
+                      {%- endif %}
+                      {% if filter.true_value.count == 0 and filter.true_value.active == false -%}
+                        disabled
+                      {%- endif %}
+                      tabindex="0"
+                    >
+                    <label
+                      for="Filter-{{ filter.param_name }}-{{ filter.true_value.value }}"
+                      class="facet-checkbox {% if layout != 'horizontal' %} {% if filter.param_name contains 'tag' %} h6 mb-0{% endif %} {% endif %}"
+                    >
+                      <!-- <div class="filter_checkbox" tabindex="0"></div> -->
+                      <svg
+                        aria-hidden="true"
+                        class="icon icon-checkmark"
+                        width="1.1rem"
+                        height="0.7rem"
+                        viewBox="0 0 11 7"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      {{- filter.true_value.label }}
+                    </label>
+                  </li>
+                  <li class="facets__item">
+                    <input
+                      type="checkbox"
+                      name="{{ filter.param_name }}"
+                      value="{{ filter.false_value.value }}"
+                      id="Filter-{{ filter.param_name }}"
+                      {% if filter.false_value.active -%}
+                        checked
+                      {%- endif %}
+                      {% if filter.false_value.count == 0 and filter.false_value.active == false -%}
+                        disabled
+                      {%- endif %}
+                      tabindex="0"
+                    >
+                    <label
+                      for="Filter-{{ filter.param_name }}-{{ filter.false_value.value }}"
+                      class="facet-checkbox{% if layout != 'horizontal' %} {% if filter.param_name contains 'tag' %} h6 mb-0{% endif %} {% endif %}"
+                    >
+                      <!-- <div class="filter_checkbox" tabindex="0"></div> -->
+                      <svg
+                        aria-hidden="true"
+                        class="icon icon-checkmark"
+                        width="1.1rem"
+                        height="0.7rem"
+                        viewBox="0 0 11 7"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      {{- filter.false_value.label }}
+                    </label>
+                  </li>
+                </ul>
+              {%- when 'list' -%}
+                {% if layout != 'horizontal' %}
+                  <div
+                    class="{% if layout == 'drawer' or layout == 'vertical' %}{% if collapse %}collapse show{% endif %}{% endif %}{% if filter.values.size > show_more_count %} show_more_count{% endif %}"
+                    {% if layout == 'drawer' or layout == 'vertical' %}
+                      {% if collapse %} id="{{ filter.label | handleize }}"{% endif %}
+                    {% endif %}
+                    aria-labelledby="{{ filter.label | handleize }}"
+                  >
+                {% endif %}
+                <ul
+                  class="{% if layout == 'horizontal' %}dropdown-menu mt-3 {% else %}filter-options list-group pt-4{% endif %} facets-wrap"
+                  role="list"
+                >
+                  {%- for filter_value in filter.values -%}
+                    <li
+                      class="{% if layout == 'horizontal' %}dropdown-item{% else %}facets__item{% endif %}{% if forloop.index > show_more_count %} show-more-item hidden{% endif %}"
+                      role="listitem"
+                    >
+                      <input
+                        type="checkbox"
+                        name="{{ filter_value.param_name }}"
+                        value="{{ filter_value.value }}"
+                        id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                        {% if filter_value.active -%}
+                          checked
+                        {%- endif %}
+                        {% if filter_value.count == 0 and filter_value.active == false -%}
+                          disabled
+                        {%- endif %}
+                      >
+                      <label
+                        for="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                        class="facet-checkbox {% if filter.param_name contains 'tag' %} h6 mb-0{% endif %}"
+                      >
+                        {% if filter.presentation == 'image' %}
+                          <div class="presentation-image filter-image-wrapper">
+                            {% if filter_value.image %}
+                              {{
+                                filter_value.image
+                                | image_url: width: 50
+                                | image_tag: class: 'filter-image rounded', alt: filter_value.alt
+                              }}
+                            {% endif %}
+                          </div>
+                        {% elsif filter.presentation == 'swatch' %}
+                          <span
+                            class="presentation-swatch swatch d-inline-block"
+                            style="
+                              width: 25px;
+                              height: 25px;
+                              border: var(--border-width) solid rgba(var(--bs-border-color),1);
+                              background-color: {{ filter_value.swatch.color }};
+                              background-image: {% if filter_value.swatch.image %}url('{{ filter_value.swatch.image | image_url: width: 50 }}'){% endif %};
+                              background-size: cover;
+                              background-position: center;
+                              margin-right:8px;
+                              border-radius: {% if settings.swatch_shape == 'circle' %}50%{% else %}0{% endif %};
+                            "
+                          ></span>
+                        {% endif %}
+                        <span class="tool_tip label">
+                          {{ filter_value.label }}
+                          {%- if show_filter_count -%}[{{ filter_value.count }}]{%- endif -%}
+                        </span>
+                      </label>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+                {% if layout != 'horizontal' %}
+                  {% if filter.values.size > show_more_count %}
+                    <show-more-button>
+                      <button
+                        class="button-show-more link underlined-link  border-0 p-0 bg-transparent mt-2 "
+                        id="Show-More-{{ forloop.index }}-{{ section.id }}"
+                        type="button"
+                      >
+                        <span class="label-show-more label-text text-decoration-underline">{{ 'products.facets.show_more' | t -}}</span>
+                        <span class="label-show-less label-text text-decoration-underline hidden">{{ 'products.facets.show_less' | t -}}</span>
+                      </button>
+                    </show-more-button>
+                  {% endif %}
+                {%- endif %}
+                {% if layout != 'horizontal' %}</div>{% endif %}
+              {%- when 'price_range' -%}
+                <price-range
+                  class="filter-options  {% if layout == 'drawer' or layout == 'vertical' %}list-group{% endif %} {% if layout == 'horizontal' %}dropdown-menu p-3 mt-3{% endif %} {% if layout == 'drawer' or layout == 'vertical' %}{% if collapse %}collapse show{% endif %}{% endif %}"
+                  aria-labelledby="{{ filter.label | handleize }}"
+                  {% if collapse %}  id="{{ filter.label | handleize }}" {% endif %}
+                >
+                  {%- assign max_price_amount = filter.range_max | money | strip_html | escape -%}
+                  <span class="facets__selected mb-3 pt-4">
+                    {{- 'products.facets.max_price' | t: price: max_price_amount -}}
+                  </span>
+                  <div class="range_filter position-relative" style="display:none;">
+                    <input
+                      class="range"
+                      id="fromSlider"
+                      data="min-price"
+                      {% if filter.min_value.value %}
+                        value="
+                          {%- if uses_comma_decimals -%}
+                          {{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '' }}
+                          {% else %}
+                          {{ filter.min_value.value | money_without_currency | replace: ',', '' }}
+                          {% endif %}
+                        "
+                      {% else %}
+                        value="0"
+                        min="0"
+                        step="0.5"
+                        max="
+                          {%- if uses_comma_decimals -%}
+                          {{ filter.range_max | divided_by: 2 | money_without_currency | replace: '.', '' | replace: ',', '' }}
+                          {% else %}
+                          {{ filter.range_max | divided_by: 2 | money_without_currency | replace: ',', '' }}
+                          {% endif %}
+                        "
+                      {% endif %}
+                      type="range"
+                    >
+                    <label for="fromSlider" class="visually-hidden">{{ 'products.facets.from' | t }}</label>
+                    <output class="bubble"></output>
+
+                    <input
+                      id="toSlider"
+                      class="range"
+                      data="max-price"
+                      step="0.5"
+                      style="z-index:0"
+                      {% if filter.max_value.value %}
+                        value="
+                          {%- if uses_comma_decimals -%}
+                          {{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '' }}
+                          {% else %}
+                          {{ filter.max_value.value | money_without_currency | replace: ',', '' }}
+                          {% endif %}
+                        "
+                      {% else %}
+                        value="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                        min="{{ filter.range_max | divided_by: 2 | money_without_currency | replace: ',', '' }}"
+                      {% endif %}
+                      value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                      type="range"
+                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                    >
+                    <label for="toSlider" class="visually-hidden">{{ 'products.facets.to' | t }}</label>
+                    <output class="bubble"></output>
+                  </div>
+                  <div class="default-fields d-flex pb-2 gap-2 w-100">
+                    <div class="field_input border overflow-hidden d-flex w-100">
+                      <span class="field-currency align-self-center ms-3 opacity-50">{{ cart.currency.symbol }}</span>
+                      <input
+                        name="{{ filter.min_value.param_name }}"
+                        id="Filter-{{ filter.label | escape }}-GTE"
+                        class="form-control shadow-none field__input_min border-0"
+                        type="number"
+                        placeholder="0"
+                        min="0"
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                        value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                      >
+                      <label for="Filter-{{ filter.label | escape }}-GTE" class="visually-hidden">
+                        {{- 'products.facets.from' | t -}}
+                      </label>
+                    </div>
+                    <div class="field_input border overflow-hidden d-flex w-100">
+                      <span class="field-currency align-self-center ms-3 opacity-50">{{ cart.currency.symbol }}</span>
+                      <input
+                        name="{{ filter.max_value.param_name }}"
+                        id="Filter-{{ filter.label | escape }}-LTE"
+                        class="form-control shadow-none field__input_max border-0 "
+                        type="number"
+                        placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                        min="1"
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                        value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                      >
+                      <label for="Filter-{{ filter.label | escape }}-LTE" class="visually-hidden">
+                        {{- 'products.facets.to' | t -}}
+                      </label>
+                    </div>
+                  </div>
+                  <div
+                    tabindex="0"                    
+                    aria-label="{{ 'products.facets.apply' | t }}"
+                    id="applyPriceFilter"
+                    class="apply-price-filter btn btn-primary w-100"
+                  >
+                    {{- 'products.facets.apply' | t -}}
+                  </div>
+                </price-range>
+            {%- endcase -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </form>
+  </div>
+  {% if filter_layout == 'drawer' %}
+    <div
+      class="offcanvas-footer  px-5 py-4"
+    >
+      <button class="btn btn-primary btn-filters-view-results w-100" type="button" data-bs-dismiss="offcanvas">
+        {% if template == 'collection' %}
+          {{ 'products.facets.view_results' | t: count: collection.products_count }}
+        {% else %}
+          {{ 'products.facets.view_results' | t: count: search.results.size }}
+        {% endif %}
+      </button>
+      <button
+        class="btn btn-link clear-all-filters btn-sm w-100 mt-2 mb-n2 d-none"
+        type="button"
+        data-bs-dismiss="offcanvas"
+        hidden
+      >
+        {{ 'products.facets.remove_all' | t }}
+      </button>
+    </div>
+  {% endif %}
+</product-filters>

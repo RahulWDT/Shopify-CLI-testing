@@ -1,0 +1,161 @@
+<div class="testimonial__section testimonial__section-{{ section.id }} color-{{ section.settings.color_scheme }}">
+  <div
+    class="  spacing-style  {% if section.settings.full_width == true %}container-fluid{%else %}container{%endif %}"
+    style="
+      {% render 'spacing-style', settings: section.settings %}
+      padding-top: {{section.settings.padding-top }}px;
+      padding-bottom: {{section.settings.padding-bottom }}px;
+    "
+    {% if settings.animation != blank %}
+      data-aos="{{ settings.animation}}"
+    {% endif %}
+  >
+    <div class="title">
+      {% content_for 'block', type: 'header-block', id: 'header-block' %}
+    </div>
+    <div>
+      {% content_for 'block', type: 'content', id: 'testimonial_card_' %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:name.testimonial",
+  "class": "section testimonial-section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "blocks": [{ "type": "header-block" }, { "type": "content" }],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:settings.full_width",
+      "default": false
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:name.testimonial",
+      "blocks": [
+        {
+          "type": "header-block",
+          "name": "t:name.header-block",
+          "id": "header-block",
+          "static": true,
+          "settings": {
+            "padding-block-end": 15
+          },
+          "blocks": [
+            {
+              "name": "t:name.header",
+              "type": "text",
+              "settings": {
+                "text": "<h2>Testimonial</h2>",
+                "padding-block-end": 14
+              }
+            },
+            {
+              "name": "t:settings.text",
+              "type": "description",
+              "settings": {
+                "text": "Testimonial description"
+              }
+            }
+          ]
+        },
+        {
+          "type": "content",
+          "id": "testimonial_card_",
+          "static": true,
+          "blocks": [
+            {
+              "type": "testimonial_card",
+              "blocks": [
+                { "type": "text", "settings": { "text": "<h2>'Quotes Heading'</h2>" } },
+                { "type": "custom-rating" },
+                {
+                  "type": "description",
+                  "settings": {
+                    "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+                  }
+                }
+              ]
+            },
+            {
+              "type": "testimonial_card",
+              "blocks": [
+                { "type": "text", "settings": { "text": "<h2>'Quotes Heading'</h2>" } },
+                { "type": "custom-rating" },
+                {
+                  "type": "description",
+                  "settings": {
+                    "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+                  }
+                }
+              ]
+            },
+            {
+              "type": "testimonial_card",
+              "blocks": [
+                { "type": "text", "settings": { "text": "<h2>'Quotes Heading'</h2>" } },
+                { "type": "custom-rating" },
+                {
+                  "type": "description",
+                  "settings": {
+                    "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+                  }
+                }
+              ]
+            },
+            {
+              "type": "testimonial_card",
+              "blocks": [
+                { "type": "text", "settings": { "text": "<h2>'Quotes Heading'</h2>" } },
+                { "type": "custom-rating" },
+                {
+                  "type": "description",
+                  "settings": {
+                    "text": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,77 @@
+<!-- Sorting and product count -->
+
+    <div class="d-flex flex-wrap gap-4 sorting_count align-items-center">
+      {% if show_product_count and collection.products.size != 0 %}
+        <div class="filter_count">
+          <div class="number-of-products-count">
+            {{ 'products.product.count' | t: count: number_of_products }}
+          </div>
+        </div>
+      {% endif %}
+      <form class="facets-vertical-form {% unless section.settings.enable_sorting %}d-none{% endunless %}" id="FacetSortForm">
+        {%- if show_product_sorting and collection.products.size != 0 -%}
+          <div class="facet-filters sorting caption d-block">
+            <div class="facet-filters__field d-flex align-items-center flex-wrap justify-content-end">
+              <div class="select w-100">
+                {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                <!-- Visual ul li List -->
+                {%- liquid
+                  for option in collection.sort_options
+                    if option.value == sort_by
+                      assign primary_choice = option.name | escape
+                    endif
+                  endfor
+                %}
+                <product-sorting class="sort-by dropdown w-100 d-inline-grid">
+                  <button
+                    class="custom-select-buttons border dropdown-toggle ps-4 pe-5 w-100 btn btn-secondary"
+                    type="button"
+                    id="dropdownMenuSorting"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {{ primary_choice }}
+                    <!-- Add the SVG Arrow icon here -->
+                  </button>
+
+                  <ul
+                    class="sort-options dropdown-menu dropdown-menu-light wdt-custom-sorting"
+                    aria-labelledby="dropdownMenuSorting"
+                    role="menu"
+                  >
+                    {%- for option in collection.sort_options -%}
+                      <li
+                        data-value="{{ option.value | escape }}"
+                        role="menuitem"
+                        tabindex="0"
+                        {% if option.value == sort_by %}
+                          class="selected"
+                        {% endif %}
+                      >
+                        <input
+                          type="radio"
+                          name="sort_by"
+                          class="visually-hidden"
+                          id="sort-by-{{ option.value }}"
+                          value="{{ option.value }}"
+                          {% if option.value == sort_by %}
+                            checked
+                          {% endif %}
+                        >
+                        <label class="dropdown-item bg-transparent" for="sort-by-{{ option.value }}">
+                          <span>
+                            {{ option.name | escape }}
+                          </span>
+                        </label>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </product-sorting>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </form>
+    </div>
+
+

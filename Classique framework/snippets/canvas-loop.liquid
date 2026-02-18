@@ -1,0 +1,29 @@
+{%- for block in combined_blocks -%}
+  <div
+    class="product__offcanvas offcanvas offcanvas-end color-{{ settings.offcanvas_color_scheme }} gradient"
+    tabindex="-1"
+    id="offcanvas-{{ block.id }}-{{ section.id }}"
+    aria-labelledby="offcanvasLabel-{{ block.id }}-{{ section.id }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title mb-auto" id="offcanvasLabel-{{ block.id }}-{{ section.id }}">        
+        {%- if block.type == 'description' -%}
+          {{ 'products.product.description' | t }}
+         {% else %}
+        {{ block.settings.heading | default: block.settings.page.title | escape }}
+         {% endif %}
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+        {% render 'icon-close' %}
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="offcanvas-content rte">
+        {{ block.settings.content }}
+        {{ block.settings.page.content }}
+        {%- if block.settings.description_type == 'canvas' -%}{{ product.description }}{% endif %}
+      </div>
+    </div>
+  </div>
+{%- endfor -%}
