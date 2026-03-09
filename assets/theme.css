@@ -2504,3 +2504,8 @@ a.skip-to-content-link.button:focus {
 .social-proof-sales { display: flex; flex-wrap: wrap; margin: 0;  font-weight:var(--bs-body-font-weight);   color:var(--bs-red); font-size: var(--font-base-size);  line-height: 20px;  align-items: center; }
 .social-proof-sales  .flash_total_qty {  margin-left: 8px;}
 .flash_total_qty span { margin: 0 3px;  }    
+
+
+.h1{
+  color: red;
+}
