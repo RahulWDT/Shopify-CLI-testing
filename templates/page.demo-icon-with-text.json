@@ -1,1 +1,1180 @@
-{"sections":{"main":{"type":"main-page","blocks":{"text_pheX9b":{"type":"text","name":"Heading","settings":{"text":"<p>{{ closest.page.title }}<\/p>","type_preset":"h2","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_dXGCKk":{"type":"text","name":"Text","settings":{"text":"{{ closest.page.content }}","type_preset":"rte","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_pheX9b","text_dXGCKk"],"disabled":true,"settings":{"gap":12,"color_scheme":"scheme-1","padding-block-start":0,"padding-block-end":0}},"breadcrumb_KfbwFT":{"type":"breadcrumb","name":"t:name.breadcrumb","settings":{"full_width":true,"color_scheme":"scheme-617e2199-08e3-4893-bbfb-7d5495a674f4","use_breadcrumb_title":true,"breadcrumb_style":"center","image_overlay_opacity":0,"padding-block-start":80,"padding-block-end":80}},"icon_with_text_4daxHk":{"type":"icon-with-text","blocks":{"header-block":{"type":"header-block","name":"t:name.header-block","disabled":true,"static":true,"settings":{"width":"fill","custom_width":88,"horizontal_alignment":"center","horizontal_alignment_mobile":"center","padding-block-start":0,"padding-block-end":50},"blocks":{"text_CApP8c":{"type":"text","name":"t:name.header","settings":{"text":"<h2>Icon with text<\/h2>","type_preset":"rte","text_transform":"capitalize","padding-block-start":0,"padding-block-end":15,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_yNYq6k":{"type":"description","name":"t:settings.text","settings":{"text":"Description","text_transform":"capitalize","padding-block-start":0,"padding-block-end":15,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_CApP8c","description_yNYq6k"]},"icon-content-block":{"type":"icon-content-block","name":"t:settings.content-block","static":true,"settings":{"layout_type":"grid","horizontal_gap":24,"vertical_gap":24,"columns_desktop":"3","autoplay_delay":2,"style":"none","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"inherit_color_scheme":true,"pagination_color_scheme":"","padding-top":0,"padding-bottom":0},"blocks":{"icon_block_card_TeQnQj":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":6,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_kWB8Qh":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Free Shipping<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_iXcPck":{"type":"description","name":"t:settings.text","settings":{"text":"Enjoy free worldwide shipping and returns, with customsand duties taxes included.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":16,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"image_upload":"shopify:\/\/shop_images\/40e73e27851fb5e9c3ea144482c3456c85e84946.png","icon":"box","width":40,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_kWB8Qh","description_iXcPck"]},"icon_block_card_PKRdjE":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":0,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_LaT8FC":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Free Returns<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_8Da9zD":{"type":"description","name":"t:settings.text","settings":{"text":"Free returns within 15 days, please make sure the itemsare in undamaged condition.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":16,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"icon":"lock","width":40,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_LaT8FC","description_8Da9zD"]},"icon_block_card_XiLbDk":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":0,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_YXd6zC":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Support Online<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_JjttUP":{"type":"description","name":"t:settings.text","settings":{"text":"We support customers 24\/7, send questions we willsolve for you immediately.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":16,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"icon":"leaf","width":40,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_YXd6zC","description_JjttUP"]}},"block_order":["icon_block_card_TeQnQj","icon_block_card_PKRdjE","icon_block_card_XiLbDk"]}},"name":"t:name.icon-with-text","settings":{"full_width":false,"color_scheme":"scheme-2","padding-top":60,"padding-bottom":60,"custom_class":""}},"icon_with_text_9FW3wj":{"type":"icon-with-text","blocks":{"header-block":{"type":"header-block","name":"t:name.header-block","static":true,"settings":{"width":"fill","custom_width":88,"horizontal_alignment":"center","horizontal_alignment_mobile":"center","padding-block-start":0,"padding-block-end":20},"blocks":{"description_XHP7wR":{"type":"description","name":"t:settings.text","settings":{"text":"Free Shipping","text_transform":"uppercase","padding-block-start":0,"padding-block-end":10,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_HHzWHU":{"type":"text","name":"t:name.header","settings":{"text":"<h3>Shop Categories<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":15,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["description_XHP7wR","text_HHzWHU"]},"icon-content-block":{"type":"icon-content-block","name":"t:settings.content-block","static":true,"settings":{"layout_type":"carousel","horizontal_gap":24,"vertical_gap":24,"columns_desktop":"3","autoplay_delay":2,"style":"none","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"inherit_color_scheme":true,"pagination_color_scheme":"","padding-top":0,"padding-bottom":0},"blocks":{"icon_block_card_PXhLqy":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":6,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_RJ7dxt":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Free Shipping<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_YMW7tC":{"type":"description","name":"t:settings.text","settings":{"text":"Enjoy free worldwide shipping and returns, with customsand duties taxes included.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":16,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"image_upload":"shopify:\/\/shop_images\/8459dfb9e923a080ee0f5264f3fbb2c81e66e6f8.png","icon":"box","width":42,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_RJ7dxt","description_YMW7tC"]},"icon_block_card_FaCFpB":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":0,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_ykwPHr":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Free Returns<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_VcE99P":{"type":"description","name":"t:settings.text","settings":{"text":"Free returns within 15 days, please make sure the itemsare in undamaged condition.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":16,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"image_upload":"shopify:\/\/shop_images\/40e73e27851fb5e9c3ea144482c3456c85e84946.png","icon":"lock","width":42,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_ykwPHr","description_VcE99P"]},"icon_block_card_d3Fe7G":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":0,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_LyYLg9":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Support Online<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_eyyzjY":{"type":"description","name":"t:settings.text","settings":{"text":"We support customers 24\/7, send questions we willsolve for you immediately.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":16,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"image_upload":"shopify:\/\/shop_images\/8b7e8d9e12400c1751c95c752c9d02a9e034df6f.png","icon":"leaf","width":44,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_LyYLg9","description_eyyzjY"]},"icon_block_card_UKNEQN":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":0,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_Ad9mxn":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Free Shipping<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_TbGXeM":{"type":"description","name":"t:settings.text","settings":{"text":"Enjoy free worldwide shipping and returns, with customsand duties taxes included.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":16,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"image_upload":"shopify:\/\/shop_images\/40e73e27851fb5e9c3ea144482c3456c85e84946.png","icon":"eye","width":42,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_Ad9mxn","description_TbGXeM"]}},"block_order":["icon_block_card_PXhLqy","icon_block_card_FaCFpB","icon_block_card_d3Fe7G","icon_block_card_UKNEQN"]}},"name":"t:name.icon-with-text","settings":{"full_width":false,"color_scheme":"scheme-3","padding-top":60,"padding-bottom":60,"custom_class":""}},"icon_with_text_mh9WiW":{"type":"icon-with-text","blocks":{"header-block":{"type":"header-block","name":"t:name.header-block","static":true,"settings":{"width":"fill","custom_width":88,"horizontal_alignment":"center","horizontal_alignment_mobile":"center","padding-block-start":0,"padding-block-end":50},"blocks":{"description_4BDVVG":{"type":"description","name":"t:settings.text","disabled":true,"settings":{"text":"Free Shipping","text_transform":"uppercase","padding-block-start":0,"padding-block-end":15,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_h3K7tE":{"type":"text","name":"t:name.header","settings":{"text":"<h3>Shop Categories<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":15,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"button_tXUrJV":{"type":"button","name":"t:settings.button","disabled":true,"settings":{"label":"Shop now","link":"#","open_in_new_tab":false,"btn_style":"btn-primary","width":"fit-content","width_mobile":"fit-content"},"blocks":{}}},"block_order":["description_4BDVVG","text_h3K7tE","button_tXUrJV"]},"icon-content-block":{"type":"icon-content-block","name":"t:settings.content-block","static":true,"settings":{"layout_type":"carousel","horizontal_gap":24,"vertical_gap":24,"columns_desktop":"4","autoplay_delay":0,"style":"arrow","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"inherit_color_scheme":true,"pagination_color_scheme":"","padding-top":0,"padding-bottom":0},"blocks":{"icon_block_card_aCcHUE":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":6,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_JUjW8g":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Free Shipping<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_nQqFe4":{"type":"description","name":"t:settings.text","settings":{"text":"The blazer is a game-changer! Perfect fit, premium feel, and super stylish. It adds the right amount of elegance to my wardrobe.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"image_upload":"shopify:\/\/shop_images\/a31804101563a092e9e6b4fc65d0b0d7fffe8f57.png","icon":"box","width":40,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_JUjW8g","description_nQqFe4"]},"icon_block_card_3FpGCY":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":0,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_DBbMYH":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Free Returns<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_tHGPNz":{"type":"description","name":"t:settings.text","settings":{"text":"The blazer is a game-changer! Perfect fit, premium feel, and super stylish. It adds the right amount of elegance to my wardrobe.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"image_upload":"shopify:\/\/shop_images\/291e0c350ab261f9778db790fa88f703705ea676.png","icon":"lock","width":40,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_DBbMYH","description_tHGPNz"]},"icon_block_card_LJt8Vn":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":0,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_zweFj7":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Support Online<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_3mwxcb":{"type":"description","name":"t:settings.text","settings":{"text":"The shoes are top-notch! Comfortable, durable, and match every outfit effortlessly. I can wear them all day without any discomfort.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"image_upload":"shopify:\/\/shop_images\/902c538e5a0c6e3f304e15d51a4ba9ce70cd3d66.png","icon":"leaf","width":40,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_zweFj7","description_3mwxcb"]},"icon_block_card_G7zCEf":{"type":"icon-block-card","name":"t:name.card","settings":{"inherit_color_scheme":true,"color_scheme":"","content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"start","horizontal_position":"center","vartical_alignment":"center","grid_space":0,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_jJ7kUL":{"type":"text","name":"t:settings.heading","settings":{"text":"<h3>Free Shipping<\/h3>","type_preset":"h4","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"description_rTjfPD":{"type":"description","name":"t:settings.text","settings":{"text":"The handbag is just stunning! Spacious, trendy, and made with premium materials. It fits all my essentials while keeping me stylish.","text_transform":"capitalize","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon":{"type":"icon","static":true,"settings":{"image_upload":"shopify:\/\/shop_images\/2507364c8862cd79472e0251a1b9142fd92a2b39.png","icon":"eye","width":40,"link":"","open_in_new_tab":false,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_jJ7kUL","description_rTjfPD"]}},"block_order":["icon_block_card_aCcHUE","icon_block_card_3FpGCY","icon_block_card_LJt8Vn","icon_block_card_G7zCEf"]}},"name":"t:name.icon-with-text","settings":{"full_width":false,"color_scheme":"scheme-0b7209ba-6d48-4e05-bcdf-2250b8b790c4","padding-top":60,"padding-bottom":60,"custom_class":""}}},"order":["main","breadcrumb_KfbwFT","icon_with_text_4daxHk","icon_with_text_9FW3wj","icon_with_text_mh9WiW"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "text_pheX9b": {
+          "type": "text",
+          "name": "Heading",
+          "settings": {
+            "text": "<p>{{ closest.page.title }}</p>",
+            "type_preset": "h2",
+            "text_transform": "capitalize",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_dXGCKk": {
+          "type": "text",
+          "name": "Text",
+          "settings": {
+            "text": "{{ closest.page.content }}",
+            "type_preset": "rte",
+            "text_transform": "capitalize",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_pheX9b",
+        "text_dXGCKk"
+      ],
+      "disabled": true,
+      "settings": {
+        "gap": 12,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "breadcrumb_KfbwFT": {
+      "type": "breadcrumb",
+      "name": "t:name.breadcrumb",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "scheme-617e2199-08e3-4893-bbfb-7d5495a674f4",
+        "use_breadcrumb_title": true,
+        "breadcrumb_style": "center",
+        "image_overlay_opacity": 0,
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "icon_with_text_4daxHk": {
+      "type": "icon-with-text",
+      "blocks": {
+        "header-block": {
+          "type": "header-block",
+          "name": "t:name.header-block",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 88,
+            "horizontal_alignment": "center",
+            "horizontal_alignment_mobile": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 50
+          },
+          "blocks": {
+            "text_CApP8c": {
+              "type": "text",
+              "name": "t:name.header",
+              "settings": {
+                "text": "<h2>Icon with text</h2>",
+                "type_preset": "rte",
+                "text_transform": "capitalize",
+                "padding-block-start": 0,
+                "padding-block-end": 15,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "description_yNYq6k": {
+              "type": "description",
+              "name": "t:settings.text",
+              "settings": {
+                "text": "Description",
+                "text_transform": "capitalize",
+                "padding-block-start": 0,
+                "padding-block-end": 15,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_CApP8c",
+            "description_yNYq6k"
+          ]
+        },
+        "icon-content-block": {
+          "type": "icon-content-block",
+          "name": "t:settings.content-block",
+          "static": true,
+          "settings": {
+            "layout_type": "grid",
+            "horizontal_gap": 24,
+            "vertical_gap": 24,
+            "columns_desktop": "3",
+            "autoplay_delay": 2,
+            "style": "none",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "inherit_color_scheme": true,
+            "pagination_color_scheme": "",
+            "padding-top": 0,
+            "padding-bottom": 0
+          },
+          "blocks": {
+            "icon_block_card_TeQnQj": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 6,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_kWB8Qh": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Free Shipping</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_iXcPck": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "Enjoy free worldwide shipping and returns, with customsand duties taxes included.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 16,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "image_upload": "shopify://shop_images/40e73e27851fb5e9c3ea144482c3456c85e84946.png",
+                    "icon": "box",
+                    "width": 40,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_kWB8Qh",
+                "description_iXcPck"
+              ]
+            },
+            "icon_block_card_PKRdjE": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 0,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_LaT8FC": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Free Returns</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_8Da9zD": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "Free returns within 15 days, please make sure the itemsare in undamaged condition.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 16,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "icon": "lock",
+                    "width": 40,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_LaT8FC",
+                "description_8Da9zD"
+              ]
+            },
+            "icon_block_card_XiLbDk": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 0,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_YXd6zC": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Support Online</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_JjttUP": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "We support customers 24/7, send questions we willsolve for you immediately.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 16,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "icon": "leaf",
+                    "width": 40,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_YXd6zC",
+                "description_JjttUP"
+              ]
+            }
+          },
+          "block_order": [
+            "icon_block_card_TeQnQj",
+            "icon_block_card_PKRdjE",
+            "icon_block_card_XiLbDk"
+          ]
+        }
+      },
+      "name": "t:name.icon-with-text",
+      "settings": {
+        "full_width": false,
+        "color_scheme": "scheme-2",
+        "padding-top": 60,
+        "padding-bottom": 60,
+        "custom_class": ""
+      }
+    },
+    "icon_with_text_9FW3wj": {
+      "type": "icon-with-text",
+      "blocks": {
+        "header-block": {
+          "type": "header-block",
+          "name": "t:name.header-block",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 88,
+            "horizontal_alignment": "center",
+            "horizontal_alignment_mobile": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 20
+          },
+          "blocks": {
+            "description_XHP7wR": {
+              "type": "description",
+              "name": "t:settings.text",
+              "settings": {
+                "text": "Free Shipping",
+                "text_transform": "uppercase",
+                "padding-block-start": 0,
+                "padding-block-end": 10,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_HHzWHU": {
+              "type": "text",
+              "name": "t:name.header",
+              "settings": {
+                "text": "<h3>Shop Categories</h3>",
+                "type_preset": "h4",
+                "text_transform": "capitalize",
+                "padding-block-start": 0,
+                "padding-block-end": 15,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "description_XHP7wR",
+            "text_HHzWHU"
+          ]
+        },
+        "icon-content-block": {
+          "type": "icon-content-block",
+          "name": "t:settings.content-block",
+          "static": true,
+          "settings": {
+            "layout_type": "carousel",
+            "horizontal_gap": 24,
+            "vertical_gap": 24,
+            "columns_desktop": "3",
+            "autoplay_delay": 2,
+            "style": "none",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "inherit_color_scheme": true,
+            "pagination_color_scheme": "",
+            "padding-top": 0,
+            "padding-bottom": 0
+          },
+          "blocks": {
+            "icon_block_card_PXhLqy": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 6,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_RJ7dxt": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Free Shipping</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_YMW7tC": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "Enjoy free worldwide shipping and returns, with customsand duties taxes included.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 16,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "image_upload": "shopify://shop_images/8459dfb9e923a080ee0f5264f3fbb2c81e66e6f8.png",
+                    "icon": "box",
+                    "width": 42,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_RJ7dxt",
+                "description_YMW7tC"
+              ]
+            },
+            "icon_block_card_FaCFpB": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 0,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_ykwPHr": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Free Returns</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_VcE99P": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "Free returns within 15 days, please make sure the itemsare in undamaged condition.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 16,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "image_upload": "shopify://shop_images/40e73e27851fb5e9c3ea144482c3456c85e84946.png",
+                    "icon": "lock",
+                    "width": 42,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_ykwPHr",
+                "description_VcE99P"
+              ]
+            },
+            "icon_block_card_d3Fe7G": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 0,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_LyYLg9": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Support Online</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_eyyzjY": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "We support customers 24/7, send questions we willsolve for you immediately.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 16,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "image_upload": "shopify://shop_images/8b7e8d9e12400c1751c95c752c9d02a9e034df6f.png",
+                    "icon": "leaf",
+                    "width": 44,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_LyYLg9",
+                "description_eyyzjY"
+              ]
+            },
+            "icon_block_card_UKNEQN": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 0,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_Ad9mxn": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Free Shipping</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_TbGXeM": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "Enjoy free worldwide shipping and returns, with customsand duties taxes included.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 16,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "image_upload": "shopify://shop_images/40e73e27851fb5e9c3ea144482c3456c85e84946.png",
+                    "icon": "eye",
+                    "width": 42,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_Ad9mxn",
+                "description_TbGXeM"
+              ]
+            }
+          },
+          "block_order": [
+            "icon_block_card_PXhLqy",
+            "icon_block_card_FaCFpB",
+            "icon_block_card_d3Fe7G",
+            "icon_block_card_UKNEQN"
+          ]
+        }
+      },
+      "name": "t:name.icon-with-text",
+      "settings": {
+        "full_width": false,
+        "color_scheme": "scheme-3",
+        "padding-top": 60,
+        "padding-bottom": 60,
+        "custom_class": ""
+      }
+    },
+    "icon_with_text_mh9WiW": {
+      "type": "icon-with-text",
+      "blocks": {
+        "header-block": {
+          "type": "header-block",
+          "name": "t:name.header-block",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 88,
+            "horizontal_alignment": "center",
+            "horizontal_alignment_mobile": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 50
+          },
+          "blocks": {
+            "description_4BDVVG": {
+              "type": "description",
+              "name": "t:settings.text",
+              "disabled": true,
+              "settings": {
+                "text": "Free Shipping",
+                "text_transform": "uppercase",
+                "padding-block-start": 0,
+                "padding-block-end": 15,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_h3K7tE": {
+              "type": "text",
+              "name": "t:name.header",
+              "settings": {
+                "text": "<h3>Shop Categories</h3>",
+                "type_preset": "h4",
+                "text_transform": "capitalize",
+                "padding-block-start": 0,
+                "padding-block-end": 15,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_tXUrJV": {
+              "type": "button",
+              "name": "t:settings.button",
+              "disabled": true,
+              "settings": {
+                "label": "Shop now",
+                "link": "#",
+                "open_in_new_tab": false,
+                "btn_style": "btn-primary",
+                "width": "fit-content",
+                "width_mobile": "fit-content"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "description_4BDVVG",
+            "text_h3K7tE",
+            "button_tXUrJV"
+          ]
+        },
+        "icon-content-block": {
+          "type": "icon-content-block",
+          "name": "t:settings.content-block",
+          "static": true,
+          "settings": {
+            "layout_type": "carousel",
+            "horizontal_gap": 24,
+            "vertical_gap": 24,
+            "columns_desktop": "4",
+            "autoplay_delay": 0,
+            "style": "arrow",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "inherit_color_scheme": true,
+            "pagination_color_scheme": "",
+            "padding-top": 0,
+            "padding-bottom": 0
+          },
+          "blocks": {
+            "icon_block_card_aCcHUE": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 6,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_JUjW8g": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Free Shipping</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_nQqFe4": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "The blazer is a game-changer! Perfect fit, premium feel, and super stylish. It adds the right amount of elegance to my wardrobe.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "image_upload": "shopify://shop_images/a31804101563a092e9e6b4fc65d0b0d7fffe8f57.png",
+                    "icon": "box",
+                    "width": 40,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_JUjW8g",
+                "description_nQqFe4"
+              ]
+            },
+            "icon_block_card_3FpGCY": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 0,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_DBbMYH": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Free Returns</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_tHGPNz": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "The blazer is a game-changer! Perfect fit, premium feel, and super stylish. It adds the right amount of elegance to my wardrobe.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "image_upload": "shopify://shop_images/291e0c350ab261f9778db790fa88f703705ea676.png",
+                    "icon": "lock",
+                    "width": 40,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_DBbMYH",
+                "description_tHGPNz"
+              ]
+            },
+            "icon_block_card_LJt8Vn": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 0,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_zweFj7": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Support Online</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_3mwxcb": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "The shoes are top-notch! Comfortable, durable, and match every outfit effortlessly. I can wear them all day without any discomfort.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "image_upload": "shopify://shop_images/902c538e5a0c6e3f304e15d51a4ba9ce70cd3d66.png",
+                    "icon": "leaf",
+                    "width": 40,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_zweFj7",
+                "description_3mwxcb"
+              ]
+            },
+            "icon_block_card_G7zCEf": {
+              "type": "icon-block-card",
+              "name": "t:name.card",
+              "settings": {
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "start",
+                "horizontal_position": "center",
+                "vartical_alignment": "center",
+                "grid_space": 0,
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_jJ7kUL": {
+                  "type": "text",
+                  "name": "t:settings.heading",
+                  "settings": {
+                    "text": "<h3>Free Shipping</h3>",
+                    "type_preset": "h4",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "description_rTjfPD": {
+                  "type": "description",
+                  "name": "t:settings.text",
+                  "settings": {
+                    "text": "The handbag is just stunning! Spacious, trendy, and made with premium materials. It fits all my essentials while keeping me stylish.",
+                    "text_transform": "capitalize",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "icon": {
+                  "type": "icon",
+                  "static": true,
+                  "settings": {
+                    "image_upload": "shopify://shop_images/2507364c8862cd79472e0251a1b9142fd92a2b39.png",
+                    "icon": "eye",
+                    "width": 40,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_jJ7kUL",
+                "description_rTjfPD"
+              ]
+            }
+          },
+          "block_order": [
+            "icon_block_card_aCcHUE",
+            "icon_block_card_3FpGCY",
+            "icon_block_card_LJt8Vn",
+            "icon_block_card_G7zCEf"
+          ]
+        }
+      },
+      "name": "t:name.icon-with-text",
+      "settings": {
+        "full_width": false,
+        "color_scheme": "scheme-0b7209ba-6d48-4e05-bcdf-2250b8b790c4",
+        "padding-top": 60,
+        "padding-bottom": 60,
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "breadcrumb_KfbwFT",
+    "icon_with_text_4daxHk",
+    "icon_with_text_9FW3wj",
+    "icon_with_text_mh9WiW"
+  ]
+}

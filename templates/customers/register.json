@@ -1,1 +1,34 @@
-{"sections":{"main":{"type":"customer-register","settings":{"color_scheme":"scheme-1","enable_image":true,"image":"shopify:\/\/shop_images\/Rectangle_39058.png","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"block_color_scheme":"scheme-1","heading":"<h4>Create account<\/h4>","paragraph":"","border_input_style":"all","padding-block-start":40,"padding-block-end":40}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "customer-register",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "enable_image": true,
+        "image": "shopify://shop_images/Rectangle_39058.png",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "block_color_scheme": "scheme-1",
+        "heading": "<h4>Create account</h4>",
+        "paragraph": "",
+        "border_input_style": "all",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,1 +1,25 @@
-{"sections":{"cart-items":{"type":"main-cart","settings":{"color_scheme":"scheme-815853ed-3ba6-4d58-b4d0-67c982eb18da","padding-block-start":160,"padding-block-end":160,"color_scheme_sub_total":"scheme-2"}}},"order":["cart-items"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart",
+      "settings": {
+        "color_scheme": "scheme-815853ed-3ba6-4d58-b4d0-67c982eb18da",
+        "padding-block-start": 160,
+        "padding-block-end": 160,
+        "color_scheme_sub_total": "scheme-2"
+      }
+    }
+  },
+  "order": [
+    "cart-items"
+  ]
+}
